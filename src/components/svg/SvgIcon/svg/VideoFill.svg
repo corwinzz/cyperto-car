@@ -1,0 +1,17 @@
+<svg width="248" height="144" viewBox="0 0 248 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="paint2_linear_410_7" x1="0" y1="0" x2="69.7938" y2="63.9861" gradientUnits="userSpaceOnUse">
+            <stop stop-color="white" stop-opacity="0.5" />
+            <stop offset="1" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <pattern id="patter-0" height="1" width="1" patternContentUnits="objectBoundingBox">
+            <image height="1" width="1" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="./img/2.gif">
+            </image>
+        </pattern>
+    </defs>
+    <path
+        d="M1 97.5647V19.5C1 14.5294 5.02944 10.5 10 10.5H49.9038C52.4608 10.5 54.938 9.60914 56.9095 7.98058L62.8643 3.06134C64.4773 1.72889 66.5041 1 68.5963 1H237.5C242.471 1 246.5 5.02944 246.5 10V133.5C246.5 138.471 242.471 142.5 237.5 142.5H56.8911C54.9118 142.5 52.9877 141.848 51.4166 140.644L4.52552 104.708C2.30313 103.005 1 100.365 1 97.5647Z"
+        stroke="white" stroke-opacity="0.2" stroke-width="2" fill="url(#patter-0)" fill-opacity="0.9" />
+    
+</svg>

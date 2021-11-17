@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>home</title>
+    <script src="./animation.js"></script>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.fix_tip{
+			width: 500px;
+			height: 48px;
+			left: 50%;
+			margin-left: -250px;
+			font-size: 24px;
+			line-height: 48px;
+			position: fixed;
+			background: red;
+			color: white;
+			text-align: center;
+			z-index: 1;
+			border: 1px solid red;
+			animation:myfirst 3s forwards;
+			-moz-animation:myfirst 3s forwards; /* Firefox */
+			-webkit-animation:myfirst 3s forwards; /* Safari and Chrome */
+			-o-animation:myfirst 3s forwards; /* Opera */
+		}
+		@keyframes myfirst{
+			from{top:0px}
+			to{top:100px}
+		}
+		/* Firefox */
+		@-moz-keyframes myfirst {
+			from{top:0px}
+			to{top:100px}
+		}
+		/* Safari and Chrome */
+		@-webkit-keyframes myfirst {
+			from{top:0px}
+			to{top:100px}
+		}
+		 /* Opera */
+		@-o-keyframes myfirst{
+			from{top:0px}
+			to{top:100px}
+		}
+	</style>
+</head>
+<body>
+	<div class="fix_tip" id="fix_tip">
+		<!-- <b>数据格式错误，插入失败</b> -->
+	</div>
+	<!-- /错误提示 -->
+	<script type="text/javascript">
+		// setTimeout("document.getElementById('fix_tip').style.display='none'",6000);
+
+      var test=async function(){
+        await elapse(()=>{console.log('elapse',Date())},3000)
+        console.log('now',Date())
+        await delay(()=>{console.log('delay',Date())},3000)
+      }
+      test()
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1536046225593"
+    class="icon" style="" viewBox="0 0 172 43" version="1.1" xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" width="172" height="43">
+    <defs>
+        <clipPath id="rec" >
+            <!-- <path d="M0 0 V33 L10 43 H172 V0 z" fill="pink" /> -->
+            <rect x="112" y="33" width="30" height="10" /> 
+        </clipPath>
+        <clipPath id="rec1">
+            <!-- <polygon points="0 0 0 33 10 43 172 43 172 0" clip-rule="evenodd" /> -->
+        </clipPath>
+    </defs>
+    <!-- <rect x="0" y="0" width="172" height="43" clip-path="url(#rec)" />  -->
+    <!-- <path d="M10 43 L0 33 L0 0 L172 0 L172 43 H132 V33 L z" > -->
+    
+    <path d="M0 0 V33 L10 43 H112 V38 H142 V43 H172 V0 z" fill="currentColor"/>
+
+   <!-- <polygon points="0 0 0 33 10 43 172 43 172 0" clip-path="url(#rec)" />  -->
+</svg>

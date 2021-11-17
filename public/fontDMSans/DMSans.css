@@ -1,0 +1,9 @@
+/* Logo 字体 */
+@font-face {
+  font-family: "DMSans_R";
+  src: url('./DMSans-Regular.ttf');
+}
+@font-face {
+  font-family: "DMSans_B";
+  src: url('./DMSans-Bold.ttf');
+}
