@@ -12,7 +12,9 @@ div(id="app")
             template(v-show='isGallary')
                 .routermain(style="width:173px" @click="showWallet" v-show="route=='gallary'")
                     btnStart(txt="Connect" bkCol='#EA3344')
-                .routermain(style="width:173px" @click="linkTo('carousel')" v-show="!route=='gallary'")
+                .routermain(style="width:173px" @click="linkTo('func1')" v-show="isGallary2")
+                    btnStart(txt="0x...2x92" bkCol='#EA3344')
+                .routermain(style="width:173px" @click="linkTo('func2')" v-show="isGallary2")
                     btnStart(txt="My Car" bkCol='#EF925D')
                 .routermain(style="width:173px" @click="linkTo('Home')" v-show='isGallary')
                     btnStart(txt="Back to Home" bkCol='#5D5FEF')
@@ -49,6 +51,9 @@ export default {
         },
         isGallary() {
             return ['gallary', 'cardetail', 'carousel'].indexOf(this.route) > -1
+        },
+        isGallary2() {
+            return ['cardetail', 'carousel'].indexOf(this.route) > -1
         }
     },
     methods: {
