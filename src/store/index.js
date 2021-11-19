@@ -78,7 +78,7 @@ const actions = {
       arr.push(await state.cyberCar.methods.getMintSupply(1, i).call())
     }
     state.carList = arr
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < _class0 + _class1; i++) {
       carList[i].total = arr[i].supply
       carList[i].rest = arr[i].minted
       carList[i].fee = state.web3.utils.fromWei(arr[i].price, 'ether') + ' ETH'
