@@ -1,19 +1,16 @@
 <template lang='pug'>
-.wallet_avater
-    img.avatericon(:src='url' width='135' height='135')
-    .avatername {{nam}}
+.wallet_avater(@click="connect(connector)")
+    img.avatericon(:src='connector.logo' width='135' height='135')
+    .avatername {{connector.name}}
 </template>
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
     name: 'wallet',
     props: {
-        url: {
-            type: String,
-            default: ''
-        },
-        nam: {
-            type: String,
-            default: ''
+        connector: {
+            type: Object
         }
     },
     data() {
@@ -24,7 +21,14 @@ export default {
     mounted() {
     },
     methods: {
-
+        ...mapActions(['connectWallet', 'disconnectWallet']),
+        async connect(connector) {
+            await this.connectWallet(connector)
+            location.reload()
+        }
+    },
+    computed: {
+        ...mapState(['account'])
     }
 }
 </script>

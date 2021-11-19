@@ -30,6 +30,8 @@ export default {
             default: () => {
                 return {
                     cid: 0,
+                    class: 0,
+                    mode: 0,
                     nam: 'Amazing digital art',
                     state: 'NORMAL',
                     fee: '2.00 ETH',
@@ -56,7 +58,7 @@ export default {
         linkTo() {
             this.$router.push({
                 name: 'cardetail',
-                params: { cid: this.carInf.cid }
+                params: { cid: this.carInf.cid, class: this.carInf.class, mode: this.carInf.mode }
             })
         }
     }

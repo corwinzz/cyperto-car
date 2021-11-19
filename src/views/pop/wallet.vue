@@ -2,13 +2,15 @@
 .wallet
     .wlt_header Connect Wallet
     .wlt_markers
-        walletAvater(url='/img/fox.png' nam='MetaMask')
-        walletAvater(url='/img/wallconnect.png' nam='WalletConnect')
+        template(v-for="connector,idx in connectors")
+           walletAvater(:connector="connector")
     .wlt_foot(@click="onClose")
         .btn_close Close
 </template>
 <script>
 import walletAvater from './walletAvater.vue'
+import { connectors } from '../../connectors'
+
 export default {
     name: 'wallet',
     components: {
@@ -16,6 +18,7 @@ export default {
     },
     data() {
         return {
+            connectors,
             page: 'home'
         }
     },

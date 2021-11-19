@@ -10,20 +10,23 @@ div(id="app")
                 .routermain(style="width:173px" @click="linkTo('gallary')" )
                     btnStart(txt="Start Game_" bkCol='#EA3344')
             template(v-show='isGallary')
-                .routermain(style="width:173px" @click="showWallet" v-show="route=='gallary'")
+                .routermain(style="width:173px" @click="showWallet()" v-if="isGallary && !account")
                     btnStart(txt="Connect" bkCol='#EA3344')
-                .routermain(style="width:173px" @click="linkTo('func1')" v-show="isGallary2")
-                    btnStart(txt="0x...2x92" bkCol='#EA3344')
-                .routermain(style="width:173px" @click="linkTo('func2')" v-show="isGallary2")
+                .routermain(style="width:173px" @click="showWallet()" v-if="isGallary && account")
+                    btnStart(:txt="account.substring(0,10)" bkCol='#EA3344')
+                .routermain(style="width:173px" @click="linkTo('carousel')" v-show="isGallary")
                     btnStart(txt="My Car" bkCol='#EF925D')
                 .routermain(style="width:173px" @click="linkTo('Home')" v-show='isGallary')
                     btnStart(txt="Back to Home" bkCol='#5D5FEF')
-    wallet(v-show="route=='gallary' && isWallet" @onClose="isWallet=false")
+    wallet(v-show="isGallary && isWallet" @onClose="isWallet=false")
 </template>
 
 <script>
 import wallet from './views/pop/wallet.vue'
 import btnStart from './components/BtnStart/btnstart.vue'
+import { mapActions, mapState } from 'vuex'
+import { connectors } from './connectors'
+
 export default {
     name: 'App',
     components: {
@@ -31,6 +34,7 @@ export default {
     },
     data() {
         return {
+            connectors,
             isWallet: false,
             btns: [{
                 linkto: 'Home',
@@ -39,7 +43,11 @@ export default {
             }]
         }
     },
+    async mounted() {
+        await this.connectWallet(this.connectors[localStorage.getItem('connector')])
+    },
     computed: {
+        ...mapState(['account']),
         route() {
             return this.$route.name
         },
@@ -51,12 +59,10 @@ export default {
         },
         isGallary() {
             return ['gallary', 'cardetail', 'carousel'].indexOf(this.route) > -1
-        },
-        isGallary2() {
-            return ['cardetail', 'carousel'].indexOf(this.route) > -1
         }
     },
     methods: {
+        ...mapActions(['connectWallet', 'disconnectWallet']),
         linkTo(page) {
             this.$router.push(page)
         },

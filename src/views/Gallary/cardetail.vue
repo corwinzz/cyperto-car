@@ -39,10 +39,10 @@ export default {
                     modelUrl: '',
                     state: 'NORMAL',
                     nam: 'Lamborghini',
-                    kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
-                        { lab: 'Speed', val: '3.5 ETH' },
-                        { lab: 'Control', val: '3.5 ETH' },
-                        { lab: 'Range', val: '3.5 ETH' }],
+                    kvs: [{ lab: 'Acceleration', val: '?' },
+                        { lab: 'Speed', val: '?' },
+                        { lab: 'Control', val: '?' },
+                        { lab: 'Range', val: '?' }],
                     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
                 }
             }
