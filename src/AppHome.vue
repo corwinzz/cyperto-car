@@ -51,8 +51,8 @@ export default {
         },
         switchPage(page, nam) {
             let dom = this.$refs.footCard
+
             if (page === 0) {
-                console.log(dom)
                 dom.setAttribute('style', 'display:show')
                 dom.classList.toggle('fadeout', false)
                 dom.classList.toggle('fadein', true)
@@ -89,29 +89,7 @@ export default {
     left: 104px;
     color: white;
 }
-.fadeout{
-    animation: fadeout 300ms;
-}
-@keyframes fadeout {
-    0% {width:566px ;
-    opacity: 1;}
-    100% {width: 0px;
-    opacity: 0;}
-}
-.fadein{
-    animation: fadein 500ms;
-}
-@keyframes fadein {
-    0% {
-        width: 0px;
-        opacity: 0;
-    }
-    100% {
-        display: show;
-        width:566px ;
-        opacity: 1;
-    }
-}
+
 .dots{
     position:absolute;
     left: 140px;
@@ -171,6 +149,29 @@ export default {
                 }
             }
         }
+    }
+}
+.fadeout{
+    animation: fadeout 300ms;
+}
+@keyframes fadeout {
+    0% {width:566px ;
+    opacity: 1;}
+    100% {width: 0px;
+    opacity: 0;}
+}
+.fadein{
+    animation: fadein 500ms;
+}
+@keyframes fadein {
+    0% {
+        width: 0px;
+        opacity: 0;
+    }
+    100% {
+        display: show;
+        width:566px ;
+        opacity: 1;
     }
 }
 </style>

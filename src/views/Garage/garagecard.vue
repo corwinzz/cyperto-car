@@ -1,5 +1,5 @@
 <template lang='pug'>
-.garagecard
+.garagecard(ref='garagecard')
     .garage_t1 Lamborghini
     .garage_t2 RARE
     template(v-for='itm,idx in paras')
@@ -25,6 +25,33 @@ export default {
             }]
         }
     },
+    computed: {
+        pageInf() {
+            return this.$store.getters['animpage/getPageInf']
+        }
+        // route() {
+        //     return this.$route.name
+        // }
+    },
+    watch: {
+        pageInf: {
+            handler(newval, oldval) {
+                if (newval.from === 'garage') {
+                    let dom = this.$refs.garagecard
+                    dom.classList.toggle('anm_show', false)
+                    dom.classList.toggle('anm_hide', true)
+                }
+            },
+            deep: true
+        },
+        $route(to, from) {
+            if (to.name === 'garage') {
+                let dom = this.$refs.garagecard
+                dom.classList.toggle('anm_hide', false)
+                dom.classList.toggle('anm_show', true)
+            }
+        }
+    },
     mounted() {
     },
     methods: {
@@ -33,6 +60,46 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.anm_hide{
+    animation: anm1 500ms reverse;
+}
+.anm_show{
+    animation: anm 300ms;
+}
+@keyframes anm {
+    0% {
+        left: 285px;
+        width: 540px ;
+        opacity: 0;
+    }
+    80% {
+        left:185px ;
+        width: 321px;
+        opacity: 1;
+    }
+    100% {
+        left:185px ;
+        width: 321px;
+        opacity: 1;
+    }
+}
+@keyframes anm1 {
+    0% {
+        left: 285px;
+        width: 540px ;
+        opacity: 0;
+    }
+    80% {
+        left:185px ;
+        width: 321px;
+        opacity: 1;
+    }
+    100% {
+        left:185px ;
+        width: 321px;
+        opacity: 1;
+    }
+}
 .garagecard{
     position:absolute;
     left: 185px;

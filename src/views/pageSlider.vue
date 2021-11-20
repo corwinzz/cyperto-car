@@ -3,7 +3,6 @@
     .pageslider
         .page_indicate(:style="{top:pag*40+'px'}")
     svg-font(fontName="scroll" class="svg_slide")
-    svg-font(fontName="sraudio" class="svg_slide_audio")
 </template>
 
 <script>
@@ -30,12 +29,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.svg_slide_audio{
-    margin-top:70px;
-    height: 24px;
-    width: 24px;
-    color: white;
-}
+
 .svg_slide{
     margin-top:30px ;
     height: 34px;

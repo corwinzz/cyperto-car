@@ -2,7 +2,8 @@
 div(id="app")
     .main
         keep-alive
-            router-view(:isWallet='isWallet')
+            transition(name="fade")
+                router-view(:isWallet='isWallet')
     header
         img.mark(src='img/logo.gif' width='223' height='30' style="margin-left:80px;margin-top:34px")
         .btns
@@ -19,6 +20,10 @@ div(id="app")
                 .routermain(style="width:173px" @click="linkTo('Home')" v-show='isGallary')
                     btnStart(txt="Back to Home" bkCol='#5D5FEF')
     wallet(v-show="route=='gallary' && isWallet" @onClose="isWallet=false")
+    .videoIcon(@click="switchMusic")
+        img(v-if='isMuiscPlay' src='/img/sr_audio_1.gif' width='24' height='24')
+        svg-font(v-else fontName="sraudio" class="svg_slide_audio")
+    Audio(muted autoplay controls="controls" loop="loop" preload="auto" width="420" ref="backgroundmuisc" hidden)
 </template>
 
 <script>
@@ -36,8 +41,20 @@ export default {
                 linkto: 'Home',
                 color: 'blue',
                 txt: 'Back to Home'
-            }]
+            }],
+            isMuiscPlay: false,
+            src: '/music/平凡之路.mp3',
+            audio: undefined,
+            isInteractived: false
         }
+    },
+    mounted() {
+        let t = this
+        t.$nextTick(() => {
+            t.audio = t.$refs.backgroundmuisc
+            t.audio.setAttribute('src', t.src)
+            // document.addEventListener('click', t.firstClick, false)
+        })
     },
     computed: {
         route() {
@@ -57,17 +74,50 @@ export default {
         }
     },
     methods: {
+        firstClick() {
+            let t = this
+            t.isInteractived = true
+            t.audio.addEventListener('canplay', t.musicLoaded())
+            document.removeEventListener('click', t.firstClick)
+        },
         linkTo(page) {
             this.$router.push(page)
         },
         showWallet() {
             this.isWallet = true
+        },
+        switchMusic() {
+            if (this.isMuiscPlay) {
+                this.stopMusic()
+            } else {
+                this.playMuisc()
+            }
+        },
+        musicLoaded() {
+            this.playMuisc()
+        },
+        playMuisc() {
+            if (this.audio !== undefined) {
+                this.audio.play()
+                this.isMuiscPlay = true
+            }
+        },
+        stopMusic() {
+            if (this.audio !== undefined) {
+                this.audio.pause()
+                this.isMuiscPlay = false
+            }
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
+.svg_slide_audio{
+    height: 24px;
+    width: 24px;
+    color: white;
+}
 #app{
     position: relative;
     margin: 0 auto;
@@ -104,5 +154,19 @@ export default {
         width: 100%;
         height: 100%;
     }
+    .videoIcon{
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top:624px;
+        right: 60px;
+        // border: 1px solid red;
+    }
+}
+.fade-enter-active, .fade-leave-avtive {
+    transition: opacity 3s
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0
 }
 </style>

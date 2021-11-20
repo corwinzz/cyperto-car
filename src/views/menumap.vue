@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
     name: 'App',
     components: {},
@@ -37,7 +38,12 @@ export default {
         }
     },
     methods: {
+        ...mapMutations('animpage', {
+            setPageInf: 'setPageInf'
+        }),
         linkTo(itm, idx) {
+            console.log(Date())
+            this.setPageInf({ from: this.route, to: itm.nam })
             this.$router.push(itm.nam)
             this.$emit('newPage', idx)
         }
