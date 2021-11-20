@@ -61,6 +61,8 @@ export var crsls = [{
 }]
 export var allcar = [{
     cid: 0,
+    class: 0,
+    model: 0,
     nam: 'Amazing digital art',
     state: 'NORMAL',
     fee: '2.00 ETH',
@@ -69,6 +71,8 @@ export var allcar = [{
     modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
     cid: 1,
+    class: 0,
+    model: 1,
     nam: 'Amazing digital art',
     state: 'NORMAL',
     fee: '2.00 ETH',
@@ -77,6 +81,8 @@ export var allcar = [{
     modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
     cid: 2,
+    class: 0,
+    model: 2,
     nam: 'Amazing digital art',
     state: 'NORMAL',
     fee: '2.00 ETH',
@@ -85,6 +91,8 @@ export var allcar = [{
     modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
     cid: 3,
+    class: 0,
+    model: 3,
     nam: 'Amazing digital art',
     state: 'NORMAL',
     fee: '2.00 ETH',
@@ -93,6 +101,8 @@ export var allcar = [{
     modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
     cid: 4,
+    class: 1,
+    model: 0,
     nam: 'Amazing digital art',
     state: 'NORMAL',
     fee: '2.00 ETH',
@@ -101,10 +111,72 @@ export var allcar = [{
     modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
     cid: 5,
+    class: 1,
+    model: 1,
     nam: 'Amazing digital art',
     state: 'NORMAL',
     fee: '2.00 ETH',
     rest: 1,
     total: 2000,
     modelUrl: '/Lamborghini/gltf/high/black.glb'
+}, {
+  cid: 6,
+  class: 1,
+  model: 2,
+  nam: 'Amazing digital art',
+  state: 'NORMAL',
+  fee: '2.00 ETH',
+  rest: 1,
+  total: 2000,
+  modelUrl: '/Lamborghini/gltf/high/black.glb'
+}, {
+  cid: 7,
+  class: 1,
+  model: 3,
+  nam: 'Amazing digital art',
+  state: 'NORMAL',
+  fee: '2.00 ETH',
+  rest: 1,
+  total: 2000,
+  modelUrl: '/Lamborghini/gltf/high/black.glb'
+}, {
+  cid: 8,
+  class: 1,
+  model: 4,
+  nam: 'Amazing digital art',
+  state: 'NORMAL',
+  fee: '2.00 ETH',
+  rest: 1,
+  total: 2000,
+  modelUrl: '/Lamborghini/gltf/high/black.glb'
+}, {
+  cid: 9,
+  class: 1,
+  model: 5,
+  nam: 'Amazing digital art',
+  state: 'NORMAL',
+  fee: '2.00 ETH',
+  rest: 1,
+  total: 2000,
+  modelUrl: '/Lamborghini/gltf/high/black.glb'
+}, {
+  cid: 10,
+  class: 1,
+  model: 6,
+  nam: 'Amazing digital art',
+  state: 'NORMAL',
+  fee: '2.00 ETH',
+  rest: 1,
+  total: 2000,
+  modelUrl: '/Lamborghini/gltf/high/black.glb'
+}, {
+  cid: 11,
+  class: 1,
+  model: 7,
+  nam: 'Amazing digital art',
+  state: 'NORMAL',
+  fee: '2.00 ETH',
+  rest: 1,
+  total: 2000,
+  modelUrl: '/Lamborghini/gltf/high/black.glb'
 }]
