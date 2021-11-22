@@ -111,7 +111,7 @@ export default {
         height: 60px;
         line-height: 20px;
         font-size: 16px;
-        font-family:DMSans;
+        font-family:DMSans_R;
     }
     .line{
         margin-top:20px ;

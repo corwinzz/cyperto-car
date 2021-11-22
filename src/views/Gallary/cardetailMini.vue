@@ -73,7 +73,7 @@ export default {
         .cdd_state{
             height: 30px;
             line-height: 30px;
-            font-family:DMSans_normal;
+            font-family:DMSans_R;
             font-weight: bold;
             letter-spacing: 1px;
             color: '#EA3344';

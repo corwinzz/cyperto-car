@@ -29,9 +29,6 @@ export default {
         pageInf() {
             return this.$store.getters['animpage/getPageInf']
         }
-        // route() {
-        //     return this.$route.name
-        // }
     },
     watch: {
         pageInf: {

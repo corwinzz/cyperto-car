@@ -48,7 +48,7 @@ export default {
         height: 48px;
         line-height: 48px;
         font-size: 34px;
-        font-family: DMSans;
+        font-family: DMSans_R;
         font-weight: Bold;
         text-align: center;
         color: white;

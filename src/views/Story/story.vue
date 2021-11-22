@@ -1,6 +1,6 @@
 <template lang='pug'>
 .story
-    .blurWindow(v-show='wind==1' @click='wind=2')
+    .blurWindow(v-show='wind==1' @click='wind=2' ref='blurWindow')
         .title INTRODUCTION
         .txt Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track.
         .line
@@ -32,23 +32,91 @@ export default {
     },
     methods: {
 
+    },
+    computed: {
+        pageInf() {
+            return this.$store.getters['animpage/getPageInf']
+        }
+    },
+    watch: {
+        pageInf: {
+            handler(newval, oldval) {
+                if (newval.from === 'story') {
+                    let dom = this.$refs.blurWindow
+                    dom.classList.toggle('anm_show', false)
+                    dom.classList.toggle('anm_hide', true)
+                }
+            },
+            deep: true
+        },
+        $route(to, from) {
+            if (to.name === 'story') {
+                let dom = this.$refs.blurWindow
+                dom.classList.toggle('anm_hide', false)
+                dom.classList.toggle('anm_show', true)
+            }
+        }
     }
 }
 </script>
 <style lang="less" scoped>
+.anm_hide{
+    animation: anm1 500ms reverse;
+}
+.anm_show{
+    animation: anm 300ms ;
+}
+@keyframes anm {
+    0% {
+        left: 180px;
+        width: 320px;
+        top: 240px;
+        opacity: 0;
+    }
+    80% {
+        left: 80px;
+        width: 460px;
+        top:320px;
+        opacity: 1;
+    }
+    100% {
+        left: 80px;
+        width: 460px;
+        top:320px;
+        opacity: 1;
+    }
+}
+@keyframes anm1 {
+    0% {
+        left: 180px;
+        width: 320px;
+        top: 240px;
+        opacity: 0;
+    }
+    80% {
+        left: 80px;
+        width: 460px;
+        top:320px;
+        opacity: 1;
+    }
+    100% {
+        left: 80px;
+        width: 460px;
+        top:320px;
+        opacity: 1;
+    }
+}
 .story{
     height: 768px;
     width: 1440px;
     background: url('/img/b_story1.png') no-repeat center fixed;
-    background-size:100% 110%;
-    // background-position: center center;
+    background-size:100% 100%;
 }
 .blurWindow{
     z-index: 2;
     position: relative;
     left: 80px;
     top: 320px;
-    // box-shadow: 0 0 5px 1px #fff;
     color: #fff;
     font-size: 15px;
     overflow: hidden;
@@ -68,7 +136,7 @@ export default {
         height: 60px;
         line-height: 20px;
         font-size: 16px;
-        font-family:DMSans;
+        font-family:DMSans_R;
     }
     .line{
         margin-top:20px ;

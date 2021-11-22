@@ -25,6 +25,7 @@ div(id="app")
         svg-font(v-else fontName="sraudio" class="svg_slide_audio")
     Audio(muted autoplay controls="controls" loop="loop" preload="auto" width="420" ref="backgroundmuisc" hidden)
     wallet(v-show="isGallary && isWallet" @onClose="isWallet=false")
+
 </template>
 
 <script>
@@ -58,7 +59,7 @@ export default {
         t.$nextTick(() => {
             t.audio = t.$refs.backgroundmuisc
             t.audio.setAttribute('src', t.src)
-            // document.addEventListener('click', t.firstClick, false)
+            document.addEventListener('click', t.firstClick, false)
         })
         await this.connectWallet(this.connectors[localStorage.getItem('connector')])
     },
@@ -126,15 +127,10 @@ export default {
 #app{
     position: relative;
     margin: 0 auto;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // margin-left: -720px;
-    // margin-top: -384px;
     width: 1440px;
     height: 768px;
     background: black;
-    // text-align: center;
+    font-family: DMSans_R;
     header{
         z-index: 99;
         position: absolute;

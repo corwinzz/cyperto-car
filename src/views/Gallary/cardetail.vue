@@ -94,7 +94,7 @@ export default {
     display: flex;
     justify-content: space-between;
     .btn_txt{
-        font-family: 'DMSans_Bold';
+        font-family: 'DMSans_B';
         font-size: 14px;
         font-weight: bold;
         height: 40px;
@@ -121,7 +121,7 @@ export default {
         .cdd_state{
             height: 50px;
             line-height: 50px;
-            font-family:DMSans_normal;
+            font-family:DMSans_R;
             font-weight: bold;
             letter-spacing: 1px;
             color: '#EA3344';

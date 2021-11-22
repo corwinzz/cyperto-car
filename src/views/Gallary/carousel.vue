@@ -53,7 +53,7 @@ export default {
     display: flex;
     justify-content: space-between;
     .btn_txt{
-        font-family: 'DMSans_Bold';
+        font-family: 'DMSans_R';
         font-size: 14px;
         font-weight: bold;
         height: 40px;

@@ -86,12 +86,12 @@ export default {
     }
     80% {
         left: 280px;
-        transform:scale(0.5,0.5);
+        transform:scale(0.7,0.7);
         opacity: 0;
     }
     100% {
         left: 280px;
-        transform:scale(0.5,0.5);
+        transform:scale(0.7,0.7);
         opacity: 0;
     }
 }
@@ -103,12 +103,12 @@ export default {
     }
     80% {
         left: 280px;
-        transform:scale(0.5,0.5);
+        transform:scale(0.7,0.7);
         opacity: 0;
     }
     100% {
         left: 280px;
-        transform:scale(0.5,0.5);
+        transform:scale(0.7,0.7);
         opacity: 0;
     }
 }

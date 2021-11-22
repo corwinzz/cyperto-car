@@ -1,5 +1,5 @@
 <template lang='pug'>
-.partners
+.partners(ref='partners')
     .partners_marks
         .marks_row
             img(class='whitepng' src='/img/netflix.png' width='240' height='64' alt="filter applied")
@@ -27,10 +27,35 @@ export default {
     },
     methods: {
 
+    },
+    watch: {
+        $route(to, from) {
+            if (to.name === 'partners') {
+                let dom = this.$refs.partners
+                dom.classList.toggle('anm_show', true)
+            }
+        }
     }
 }
 </script>
 <style lang="less" scoped>
+.anm_show{
+    animation: anm 500ms ;
+}
+@keyframes anm {
+    0% {
+        background-position-y:-200px;
+        opacity: 0;
+    }
+    80% {
+        background-position-y:50%;
+        opacity: 1;
+    }
+    100% {
+        background-position-y:50%;
+        opacity: 1;
+    }
+}
 .whitepng{
     filter: brightness(0) invert(1);
     margin: auto;
