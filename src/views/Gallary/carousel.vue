@@ -8,8 +8,10 @@ div
 
 <script>
 import btn from '../../components/BtnStart/Btn.vue'
-import { crsls } from './carlist'
+// import { crsls } from './carlist'
 import cardetailMini from './cardetailMini.vue'
+import { mapActions, mapState } from 'vuex'
+
 let tabCols = {
     NORMAL: 'green',
     RARE: 'red'
@@ -27,6 +29,7 @@ export default {
 
     },
     computed: {
+        ...mapState(['account']),
         ccstate() {
             let col = tabCols[this.carInf.state]
             return {
@@ -35,8 +38,14 @@ export default {
             }
         }
     },
-    mounted() {
-        this.cards = crsls
+    async mounted() {
+        this.cards = await this.getCarsByOwner()
+    },
+    methods: {
+      ...mapActions(['getCarsByOwner']),
+      toList() {
+          this.$router.push({ name: 'gallary' })
+      }
     }
 }
 </script>

@@ -12,7 +12,7 @@ div
                     .kvs_v {{itm.val}}
             .cdd_other {{carInf.other}}
             .cc_mint
-                btnStart(txt="Mint" bkCol='red' )
+                btnStart(@click.native='toMint' txt="Mint" bkCol='red' )
     //- .btn_tolist(@click='toList')
     //-     svg-icon(svgName="arrow_left" className="svg_back")
     //-     .btn_txt back to list
@@ -23,6 +23,8 @@ div
 import btnStart from '../../components/BtnStart/btnstart.vue'
 import btn from '../../components/BtnStart/Btn.vue'
 import threecard from '../../components/Three3D/ThreeCard.vue'
+import { mapActions, mapState } from 'vuex'
+
 let tabCols = {
     NORMAL: 'green',
     RARE: 'red'
@@ -54,6 +56,7 @@ export default {
         }
     },
     computed: {
+        ...mapState(['account']),
         ccstate() {
             let col = tabCols[this.carInf.state]
             return {
@@ -64,12 +67,30 @@ export default {
     },
     mounted() {
         this.cid = this.$route.params.cid
-        console.log(this.cid)
     },
     methods: {
+        ...mapActions(['mint', 'isMintable', 'isOnlyWhitelist', 'getWhitelist']),
         toList() {
-            console.log(111)
-            this.$router.push({ name: 'carousel' })
+            this.$router.push({ name: 'gallary' })
+        },
+        async toMint() {
+            if (!await this.isMintable()) {
+                console.log('mint is not start!')
+                return
+            } else if (await this.isOnlyWhitelist()) {
+                const whitelistAddress = await this.getWhitelist()
+                if (!whitelistAddress) {
+                    console.log('only whitelist address can mint!')
+                    return
+                }
+            }
+            const fee = this.$route.params.fee.split(' ')[0] // 1.6 ETH
+            const params = {
+                value: fee,
+                _class: this.$route.params.class,
+                _mode: this.$route.params.mode
+            }
+            this.mint(params)
         }
     }
 }

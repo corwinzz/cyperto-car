@@ -58,7 +58,7 @@ export default {
         linkTo() {
             this.$router.push({
                 name: 'cardetail',
-                params: { cid: this.carInf.cid, class: this.carInf.class, mode: this.carInf.mode }
+                params: { cid: this.carInf.cid, class: this.carInf.class, mode: this.carInf.mode, fee: this.carInf.fee }
             })
         }
     }

@@ -59,6 +59,18 @@ const actions = {
     })
   },
   /**
+   * Returns if only whitelist address can mint.
+   */
+  async isOnlyWhitelist({ state }) {
+    return await state.cyberCar.methods.isOnlyWhitelist().call()
+  },
+  /**
+   * Returns if address is in whitelist.
+   */
+  async getWhitelist({ state }) {
+    return await state.cyberCar.methods.getWhitelist(state.account).call()
+  },
+  /**
    * Returns if token is mintable.
    */
   async isMintable({ state }) {
@@ -68,7 +80,8 @@ const actions = {
    * Get information about each car model
    * supply, minted, price.
    */
-  async getMintSupply({ state }, carList) {
+  async getMintSupply({ state }) {
+    let carList = []
     // mode in class 0 must be from 0 to 3.
     const _class0 = 4
     // mode in class 1 must be from 0 to 7.
@@ -80,11 +93,19 @@ const actions = {
     for (let i = 0; i < _class1; i++) {
       arr.push(await state.cyberCar.methods.getMintSupply(1, i).call())
     }
-    state.carList = arr
     for (let i = 0; i < _class0 + _class1; i++) {
-      carList[i].total = arr[i].supply
-      carList[i].rest = arr[i].minted
-      carList[i].fee = state.web3.utils.fromWei(arr[i].price, 'ether') + ' ETH'
+      const car = {
+        cid: i,
+        class: i < _class0 ? 0 : 1,
+        mode: i >= _class0 ? i - _class0 : i,
+        nam: 'Amazing digital art',
+        state: 'NORMAL',
+        fee: state.web3.utils.fromWei(arr[i].price, 'ether') + ' ETH',
+        rest: arr[i].minted,
+        total: arr[i].supply,
+        modelUrl: '/Lamborghini/gltf/high/black.glb'
+      }
+      carList.push(car)
     }
     return carList
   },
@@ -97,15 +118,16 @@ const actions = {
    *
    * - the caller must pay for mint.
    */
-  async mint({ state }, value, _class, _mode) {
+  async mint({ state }, params) {
+    console.log(params)
     // eslint-disable-next-line new-cap
-    const _value = state.web3.utils.toWei(String(value), 'ether')
+    const _value = state.web3.utils.toWei(String(params.value), 'ether')
     const gasPrice = await state.web3.eth.getGasPrice()
-    const estimateGas = await state.cyberCar.methods.mint(_class, _mode).estimateGas({
+    const estimateGas = await state.cyberCar.methods.mint(params._class, params._mode).estimateGas({
       from: state.account,
       value: _value
     })
-    return await state.cyberCar.methods.mint(_class, _mode).send({
+    return await state.cyberCar.methods.mint(params._class, params._mode).send({
       from: state.account,
       gas: estimateGas,
       gasPrice,
@@ -116,13 +138,24 @@ const actions = {
    * Returns cars of owner.
    */
   async getCarsByOwner({ state }) {
-    return await state.cyberCar.methods.getCarsByOwner(state.account).call()
-  },
-  /**
-   * Returns car of tokenId.
-   */
-  async getCar({ state }, tokenId) {
-    return await state.cyberCar.methods.getCar(tokenId).call()
+    let cars = []
+    const carIds = await state.cyberCar.methods.getCarsByOwner(state.account).call()
+    for (let i = 0; i < carIds.length; i++) {
+      const car = await state.cyberCar.methods.getCar(carIds[i]).call()
+      const carObj = {
+        cid: carIds[i],
+        modelUrl: '/Lamborghini/gltf/high/black.glb',
+        state: 'NORMAL',
+        nam: 'Lamborghini',
+        kvs: [{ lab: 'Acceleration', val: car.acceleration },
+          { lab: 'Speed', val: car.speed },
+          { lab: 'Control', val: car.control },
+          { lab: 'Range', val: car.range }],
+        other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
+      }
+      cars.push(carObj)
+    }
+    return cars
   }
 }
 const mutations = {}
