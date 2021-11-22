@@ -150,7 +150,8 @@ const actions = {
         kvs: [{ lab: 'Acceleration', val: car.acceleration },
           { lab: 'Speed', val: car.speed },
           { lab: 'Control', val: car.control },
-          { lab: 'Range', val: car.range }],
+          { lab: 'Range', val: car.range },
+          { lab: 'Color', val: car.color }],
         other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
       }
       cars.push(carObj)

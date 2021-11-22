@@ -34,7 +34,8 @@ export default {
                     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
                         { lab: 'Speed', val: '3.5 ETH' },
                         { lab: 'Control', val: '3.5 ETH' },
-                        { lab: 'Range', val: '3.5 ETH' }],
+                        { lab: 'Range', val: '3.5 ETH' },
+                        { lab: 'Color', val: 'red' }],
                     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
                 }
             }

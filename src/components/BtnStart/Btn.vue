@@ -13,9 +13,9 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    wid: 160,
+                    wid: 200,
                     hei: 40,
-                    txt: 'click me',
+                    txt: 'Back to Market',
                     bkColor: '#444'
                 }
             }
