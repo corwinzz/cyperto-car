@@ -57,6 +57,7 @@ export default {
             width: 698px;
             height: 168px;
             line-height: 56px;
+            font-family: DMSans_R;
             font-weight: bold;
             font-size: 48px;
             letter-spacing: -2px;
@@ -66,6 +67,7 @@ export default {
             width: 540px;
             height: 140px;
             line-height: 28px;
+            font-family: DMSans_R;
             font-size: 18px;
             letter-spacing: -0.4px;
             vertical-align: top;

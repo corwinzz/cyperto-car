@@ -110,7 +110,7 @@ export default {
         line-height: 36px;
         font-size: 30px;
         font-weight: 400;
-        font: Monument Extended;
+        font-family: Mon;
         color: white;
     }
     .garage_t2{

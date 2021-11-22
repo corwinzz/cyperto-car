@@ -25,19 +25,8 @@ export default {
         pageInf() {
             return this.$store.getters['animpage/getPageInf']
         }
-        // route() {
-        //     return this.$route.name
-        // }
     },
     watch: {
-        // route: {
-        //     handler (newval) {
-        //         if (newval === 'Home') {
-        //             let dom = this.$refs.homecard
-        //             dom.classList.toggle('anm_show', true)
-        //         }
-        //     }
-        // },
         pageInf: {
             handler(newval, oldval) {
                 if (newval.from === 'Home') {
@@ -54,10 +43,6 @@ export default {
                 dom.classList.toggle('anm_hide', false)
                 dom.classList.toggle('anm_show', true)
             }
-            // if (from.name === 'Home') {
-            //     let dom = this.$refs.homecard
-            //     dom.classList.toggle('anm_hide', true)
-            // }
         }
     },
     methods: {
@@ -126,7 +111,7 @@ export default {
         line-height: 96px;
         font-size: 80px;
         font-weight: 400;
-        font: Monument Extended;
+        font-family: Mon;
         color: white;
     }
     .homecard_t2{
@@ -135,7 +120,7 @@ export default {
         font-size: 40px;
         font-weight: 400;
         color: white;
-        font: Monument Extended;
+        font-family: Mon;
         margin-bottom: 20px;
     }
     .homecard_t3{
@@ -144,7 +129,7 @@ export default {
         font-size: 20px;
         font-weight: 400;
         color: white;
-        font: DM Sans;
+        font-family: DMSans_R;
         letter-spacing: 1px;
         margin-bottom: 30px;
     }

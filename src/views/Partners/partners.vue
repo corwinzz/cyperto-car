@@ -99,7 +99,7 @@ export default {
         font-size: 30px;
         letter-spacing: -1.6px;
         font-weight: bold;
-        font: DM Sans;
+        font: DMSans_R;
     }
 }
 </style>

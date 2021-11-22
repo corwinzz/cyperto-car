@@ -7,7 +7,7 @@
         svg-font(fontName="VideoPlay" class="svg_videoplay" @click.native='toVideo')
     pageSlider(:pag='curpag')
     footer
-        .foot_card( ref='footCard' @click='toHome2')
+        .foot_card( ref='footCard' @click='toHome2' v-show="route=='Home'")
             .slidcards
                 img( src='/img/home_1.png' width='312' height='166' )
                 .dots
@@ -136,7 +136,7 @@ export default {
                     line-height: 16px;
                     font-size: 14px;
                     letter-spacing: 0.5px;
-                    font: DM Sans;
+                    font: DMSans_R;
                     color: white;
                     font-weight: bold;
                 }
@@ -144,7 +144,7 @@ export default {
                     font-size: 14px;
                     line-height: 24px;
                     margin-top: 20px;
-                    font: DM Sans;
+                    font: DMSans_R;
                     color: white;
                 }
             }

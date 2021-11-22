@@ -81,6 +81,7 @@ export default {
         top: 0px;
         left: 0px;
         color: white;
+        font-family: DMSans_R;
         font-size: 14px;
         font-weight: 700;
         line-height: 20px;

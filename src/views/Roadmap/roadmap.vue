@@ -28,7 +28,8 @@ export default {
                 t4: '1.2 CAO will not be conducted one-time and whitelist will be required.',
                 pos: {
                     left: 80,
-                    top: 414
+                    top: 414,
+                    width: 311
                 }
             }, {
                 t1: 'Phase 02',
@@ -37,7 +38,8 @@ export default {
                 t4: '2.2 Unbunding program of Cybercar will be launchd.\nPlayers can unbundle and upgrade CyberCar with specific accesories.',
                 pos: {
                     left: 438,
-                    top: 362
+                    top: 362,
+                    width: 326
                 }
             }, {
                 t1: 'Phase 03',
@@ -46,7 +48,8 @@ export default {
                 t4: '3.2 Goverance token and utility token will be officially released and deployed in the MVP game.',
                 pos: {
                     left: 764,
-                    top: 342
+                    top: 342,
+                    width: 326
                 }
             }, {
                 t1: 'Phase 04',
@@ -55,7 +58,8 @@ export default {
                 t4: '4.2 All assets purchased before will be fully displayed and playable in the beta version.',
                 pos: {
                     left: 993,
-                    top: 108
+                    top: 108,
+                    width: 326
                 }
             }]
         }
@@ -83,7 +87,7 @@ export default {
     width: 1440px;
     background: url('/img/b_roadmap1.png') no-repeat center fixed;
     background-size:100% 100%;
-    opacity: 0.7;
+    // opacity: 0.7;
     // background-position: center center;
 }
 .blurWindow{
@@ -103,6 +107,7 @@ export default {
     .title{
         height: 48px;
         line-height: 48px;
+        font-family: Mon;
         font-size: 40px;
         font-weight: 400;
         margin-bottom:20px;

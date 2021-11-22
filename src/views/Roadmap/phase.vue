@@ -21,7 +21,8 @@ export default {
             default: function() {
                 return {
                     top: 0,
-                    left: 0
+                    left: 0,
+                    width: 0
                 }
             }
         }
@@ -30,7 +31,8 @@ export default {
         locstyle() {
             return {
                 top: this.pos.top + 'px',
-                left: this.pos.left + 'px'
+                left: this.pos.left + 'px',
+                width: this.pos.width + 'px'
             }
         }
     },
@@ -69,7 +71,7 @@ export default {
         line-height: 24px;
         font-size: 20px;
         font-weight: 400;
-        font: Monument Extended;
+        font-family: Mon;
         color: white;
         margin:4px 0px;
     }
@@ -78,7 +80,7 @@ export default {
         line-height: 17px;
         font-size: 14px;
         font-weight: 400;
-        font: Monument Extended;
+        font-family: Mon;
         color: white;
         margin:4px 0px;
     }
@@ -87,7 +89,7 @@ export default {
         font-size: 12px;
         letter-spacing: 0.2px;
         font-weight: 400;
-        font: DM Sans;
+        font-family: DMSans_R;
         margin-bottom: 20px;
         color: white;
     }
@@ -96,7 +98,7 @@ export default {
         font-size: 12px;
         letter-spacing: 0.2px;
         font-weight: 400;
-        font: DM Sans;
+        font-family: DMSans_R;
         color: white;
     }
 

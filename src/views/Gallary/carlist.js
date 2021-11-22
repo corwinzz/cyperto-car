@@ -6,7 +6,8 @@ export var crsls = [{
     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
         { lab: 'Speed', val: '3.5 ETH' },
         { lab: 'Control', val: '3.5 ETH' },
-        { lab: 'Range', val: '3.5 ETH' }],
+        { lab: 'Range', val: '3.5 ETH' },
+        { lab: 'Color', val: '?' }],
     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
 }, {
     cid: 1,
@@ -16,7 +17,8 @@ export var crsls = [{
     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
         { lab: 'Speed', val: '3.5 ETH' },
         { lab: 'Control', val: '3.5 ETH' },
-        { lab: 'Range', val: '3.5 ETH' }],
+        { lab: 'Range', val: '3.5 ETH' },
+        { lab: 'Color', val: '?' }],
     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
 }, {
     cid: 2,
@@ -26,7 +28,8 @@ export var crsls = [{
     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
         { lab: 'Speed', val: '3.5 ETH' },
         { lab: 'Control', val: '3.5 ETH' },
-        { lab: 'Range', val: '3.5 ETH' }],
+        { lab: 'Range', val: '3.5 ETH' },
+        { lab: 'Color', val: '?' }],
     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
 }, {
     cid: 3,
@@ -36,7 +39,8 @@ export var crsls = [{
     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
         { lab: 'Speed', val: '3.5 ETH' },
         { lab: 'Control', val: '3.5 ETH' },
-        { lab: 'Range', val: '3.5 ETH' }],
+        { lab: 'Range', val: '3.5 ETH' },
+        { lab: 'Color', val: '?' }],
     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
 }, {
     cid: 4,
@@ -46,7 +50,8 @@ export var crsls = [{
     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
         { lab: 'Speed', val: '3.5 ETH' },
         { lab: 'Control', val: '3.5 ETH' },
-        { lab: 'Range', val: '3.5 ETH' }],
+        { lab: 'Range', val: '3.5 ETH' },
+        { lab: 'Color', val: '?' }],
     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
 }, {
     cid: 5,
@@ -56,7 +61,8 @@ export var crsls = [{
     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
         { lab: 'Speed', val: '3.5 ETH' },
         { lab: 'Control', val: '3.5 ETH' },
-        { lab: 'Range', val: '3.5 ETH' }],
+        { lab: 'Range', val: '3.5 ETH' },
+        { lab: 'Color', val: '?' }],
     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
 }]
 export var allcar = [{

@@ -47,12 +47,14 @@ export default {
     height: 43px;
     position:absolute;
     .txt{
+
         position:absolute;
         margin-left: 26px;
         margin-top: 7px;
         top: 0px;
         left: 0px;
         color: white;
+        font-family: DMSans_R;
         font-size: 14px;
         font-weight: 700;
         line-height: 28px;

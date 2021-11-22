@@ -25,19 +25,20 @@ div(id="app")
         svg-font(v-else fontName="sraudio" class="svg_slide_audio")
     Audio(muted autoplay controls="controls" loop="loop" preload="auto" width="420" ref="backgroundmuisc" hidden)
     wallet(v-show="isGallary && isWallet" @onClose="isWallet=false")
-
+    Title(v-show="isGallary && getIsTitle")
 </template>
 
 <script>
 import wallet from './views/pop/wallet.vue'
+import Title from './views/pop/Title.vue'
 import btnStart from './components/BtnStart/btnstart.vue'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import { connectors } from './connectors'
 
 export default {
     name: 'App',
     components: {
-        btnStart, wallet
+        btnStart, wallet, Title
     },
     data() {
         return {
@@ -59,11 +60,12 @@ export default {
         t.$nextTick(() => {
             t.audio = t.$refs.backgroundmuisc
             t.audio.setAttribute('src', t.src)
-            document.addEventListener('click', t.firstClick, false)
+            // document.addEventListener('click', t.firstClick, false)
         })
         await this.connectWallet(this.connectors[localStorage.getItem('connector')])
     },
     computed: {
+        ...mapGetters('animpage', ['getIsTitle']),
         ...mapState(['account']),
         route() {
             return this.$route.name
@@ -83,7 +85,7 @@ export default {
             let t = this
             t.isInteractived = true
             t.audio.addEventListener('canplay', t.musicLoaded())
-            document.removeEventListener('click', t.firstClick)
+            // document.removeEventListener('click', t.firstClick)
         },
         ...mapActions(['connectWallet', 'disconnectWallet']),
         linkTo(page) {

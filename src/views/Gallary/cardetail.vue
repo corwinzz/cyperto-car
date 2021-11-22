@@ -23,7 +23,7 @@ div
 import btnStart from '../../components/BtnStart/btnstart.vue'
 import btn from '../../components/BtnStart/Btn.vue'
 import threecard from '../../components/Three3D/ThreeCard.vue'
-import { mapActions, mapState } from 'vuex'
+import { mapMutations, mapState, mapActions } from 'vuex'
 
 let tabCols = {
     NORMAL: 'green',
@@ -44,7 +44,8 @@ export default {
                     kvs: [{ lab: 'Acceleration', val: '?' },
                         { lab: 'Speed', val: '?' },
                         { lab: 'Control', val: '?' },
-                        { lab: 'Range', val: '?' }],
+                        { lab: 'Range', val: '?' },
+                        { lab: 'Color', val: '?' }],
                     other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
                 }
             }
@@ -70,7 +71,16 @@ export default {
     },
     methods: {
         ...mapActions(['mint', 'isMintable', 'isOnlyWhitelist', 'getWhitelist']),
+        ...mapMutations('animpage', {
+            setIsTitle: 'setIsTitle',
+            setTitleInf: 'setTitleInf'
+        }),
         toList() {
+            // this.setIsTitle(true)
+            this.setTitleInf({
+                title: '标题',
+                content: '内容'
+            })
             this.$router.push({ name: 'gallary' })
         },
         async toMint() {
@@ -151,6 +161,7 @@ export default {
         .cdd_name{
             margin-top: 20px;
             font-size: 60px;
+            font-family: Mon;
             height: 72px;
             line-height: 72px;
             color: #FFFFFF;

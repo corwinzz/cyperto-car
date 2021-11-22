@@ -1,20 +1,17 @@
 <template lang='pug'>
-.wallet
-    .wlt_header Connect Wallet
-    .wlt_markers
-        template(v-for="connector,idx in connectors")
-           walletAvater(:connector="connector")
-    .wlt_foot(@click="onClose")
+.Title
+    .Title_header {{getTitleInf.title}}
+    .Title_markers {{getTitleInf.content}}
+    .Title_foot(@click="onClose")
         .btn_close Close
 </template>
 <script>
-import walletAvater from './walletAvater.vue'
 import { connectors } from '../../connectors'
-
+import { mapGetters, mapMutations } from 'vuex'
 export default {
     name: 'wallet',
     components: {
-        walletAvater
+
     },
     data() {
         return {
@@ -24,43 +21,57 @@ export default {
     },
     mounted() {
     },
+    computed: {
+        ...mapGetters('animpage', ['getTitleInf'])
+    },
     methods: {
+        ...mapMutations('animpage', {
+            setIsTitle: 'setIsTitle'
+        }),
         onClose() {
-            this.$emit('onClose')
+            this.setIsTitle(false)
         }
     }
 }
 </script>
 <style lang="less" scoped>
-.wallet{
+.Title{
     position:absolute;
-    top:150px ;
-    left: 360px;
-    width: 720px;
-    height: 475px;
+    top:230px ;
+    left: calc(50% - 530px/2);
+    width: 530px;
+    height: 297px;
     background: black;
-    // border: 1px solid red;
     display: flex;
     flex-direction: column;
-    .wlt_header{
-        height: 78px;
-        padding: 30px;
+    align-items: center;
+    padding: 0px 20px 30px;
+    .Title_header{
+        margin-top: 30px;
+        height: 38px;
         line-height:38px ;
         text-align: center;
         font-family: Mon;
-        font-weight: 400;
         font-size: 32px;
         color: white;
+        margin-bottom: 10px;
     }
-    .wlt_markers{
-        display: flex;
-        margin:20px auto ;
-        justify-content: space-between;
+    .Title_markers{
+        margin: 20px;
+        width: 490px;
+        height: 80px;
+        line-height: 20px;
+        font-family: DMSans_R;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: center;
+        color: #ffffff;
+        letter-spacing: 1px;
     }
-    .wlt_foot{
+    .Title_foot{
+        margin-top: 10px;
         width: 100%;
         .btn_close{
-            font-family: DMSans_R;
             height: 60px;
             line-height: 60px;
             font-size: 14px;

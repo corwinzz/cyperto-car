@@ -60,7 +60,7 @@ export default {
     .menuTxt{
         margin-right:20px;
         margin-left:20px ;
-        font-family: 'Monserrat';
+        font-family: 'DMSans_B';
         font-size: 14px;
         font-weight: bold;
         vertical-align: top;

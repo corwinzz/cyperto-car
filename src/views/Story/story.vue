@@ -128,6 +128,7 @@ export default {
     .title{
         height: 48px;
         line-height: 48px;
+        font-family: Mon;
         font-size: 40px;
         font-weight: 400;
         margin-bottom:20px;
@@ -137,6 +138,7 @@ export default {
         line-height: 20px;
         font-size: 16px;
         font-family:DMSans_R;
+        letter-spacing: 1px;
     }
     .line{
         margin-top:20px ;
@@ -168,6 +170,7 @@ export default {
             height: 34px;
             line-height: 34px;
             font-size: 24px;
+            font-family: DMSans_R;
             text-align: center;
         }
         .line{
@@ -179,19 +182,26 @@ export default {
         .nam{
             height: 28px;
             line-height: 28px;
-            text-align: center;
             font-size: 18px;
+            font-family: Mon;
+            text-align: center;
+            letter-spacing: 1.1px;
+            font-weight: 400;
         }
         .foot{
+            margin-top: 8px;
+            font-family: DMSans_R;
             height: 24px;
             font-size: 14px;
             text-align: center;
+            font-weight: 400;
+            letter-spacing: -0.3px;
         }
     }
 }
 .blurWindow::before {
     background: url('/img/b_story1.png') no-repeat center fixed;
-    background-size:100% 110%;
+    background-size:100% 100%;
     content: '';
     display: block;
     position: absolute;
@@ -201,6 +211,6 @@ export default {
     right: 0;
     bottom: 0;
     margin: -10px;
-    filter: blur(10px);
+    filter: blur(5px);
 }
 </style>

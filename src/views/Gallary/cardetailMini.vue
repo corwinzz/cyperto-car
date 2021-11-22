@@ -81,6 +81,7 @@ export default {
             font-size: 24px;
         }
         .cdd_name{
+            font-family: Mon;
             margin-top: 20px;
             font-size: 30px;
             height: 36px;
