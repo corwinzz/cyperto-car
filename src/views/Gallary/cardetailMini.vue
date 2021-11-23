@@ -4,7 +4,7 @@
         threecard(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="230" :hei="230")
     .cdd_inf
         .cdd_state(:style="ccstate") {{carInf.state}}
-        .cdd_name {{carInf.nam}}
+        .cdd_name {{carInf.name}}
         .cdd_kvs
             .kvs(v-for="itm,idx in carInf.kvs")
                 .kvs_k {{itm.lab}}
@@ -30,7 +30,7 @@ export default {
                     cid: 0,
                     modelUrl: '',
                     state: 'NORMAL',
-                    nam: 'Lamborghini',
+                    name: 'Lamborghini',
                     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
                         { lab: 'Speed', val: '3.5 ETH' },
                         { lab: 'Control', val: '3.5 ETH' },

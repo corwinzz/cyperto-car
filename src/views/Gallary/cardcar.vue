@@ -3,7 +3,7 @@
     .area3D
         threecard(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="264" :hei="310")
     .cc_row1
-        .cc_nam {{carInf.nam}}
+        .cc_nam {{carInf.name}}
         .cc_state(:style="ccstate") {{carInf.state}}
     .divide
     .cc_row2
@@ -32,7 +32,7 @@ export default {
                     cid: 0,
                     class: 0,
                     mode: 0,
-                    nam: 'Amazing digital art',
+                    name: 'Amazing digital art',
                     state: 'NORMAL',
                     fee: '2.00 ETH',
                     rest: 1,
@@ -58,7 +58,14 @@ export default {
         linkTo() {
             this.$router.push({
                 name: 'cardetail',
-                params: { cid: this.carInf.cid, class: this.carInf.class, mode: this.carInf.mode, fee: this.carInf.fee }
+                query: {
+                    cid: this.carInf.cid,
+                    class: this.carInf.class,
+                    mode: this.carInf.mode,
+                    fee: this.carInf.fee,
+                    rest: this.carInf.rest,
+                    total: this.carInf.total
+                }
             })
         }
     }
