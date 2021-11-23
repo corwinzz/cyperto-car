@@ -52,7 +52,9 @@ export default {
             isMuiscPlay: false,
             src: '/music/平凡之路.mp3',
             audio: undefined,
-            isInteractived: false
+            isInteractived: false,
+            isScrolling: false,
+            routelink: ['Home', 'garage', 'story', 'roadmap', 'partners', 'gallary']
         }
     },
     async mounted() {
@@ -60,9 +62,17 @@ export default {
         t.$nextTick(() => {
             t.audio = t.$refs.backgroundmuisc
             t.audio.setAttribute('src', t.src)
-            // document.addEventListener('click', t.firstClick, false)
+            document.addEventListener('click', t.firstClick, false)
+            document.addEventListener('mousewheel', t.handleScroll, true)
         })
         await this.connectWallet(this.connectors[localStorage.getItem('connector')])
+    },
+    watch: {
+        route: {
+            handler() {
+                this.isScrolling = false
+            }
+        }
     },
     computed: {
         ...mapGetters('animpage', ['getIsTitle']),
@@ -81,6 +91,25 @@ export default {
         }
     },
     methods: {
+        handleScroll(e) {
+            let direction = e.deltaY > 0 ? 'down' : 'up'
+            if (this.isScrolling) return
+            let routeIdx = this.routelink.indexOf(this.route)
+            if (routeIdx > -1 && routeIdx < this.routelink.length - 1) {
+                if (direction === 'down') {
+                    this.$router.push({ name: this.routelink[routeIdx + 1] })
+                    this.isScrolling = true
+                } else { // 向上或前
+                    if (routeIdx > 0) {
+                        this.$router.push({ name: this.routelink[routeIdx - 1] })
+                        this.isScrolling = true
+                    }
+                }
+            }
+            if (routeIdx === 0) {
+                e.stopPropagation()
+            }
+        },
         firstClick() {
             let t = this
             t.isInteractived = true
