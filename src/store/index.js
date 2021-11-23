@@ -5,6 +5,7 @@ import home from './modules/home'
 import animpage from './modules/animpage'
 import Web3 from 'web3'
 import CyberCarABI from '../plugins/CyberCarABI'
+import BigNumber from 'bignumber.js'
 import { cyberCarContractAddr } from '../plugins/config'
 import { carTypes, colors } from '../plugins/static'
 
@@ -19,7 +20,7 @@ const state = {
   carList: []
 }
 const actions = {
-  async connectWallet({ state }, connector) {
+  async connectWallet({ state, commit }, connector) {
     if (connector && connector.isInstalled()) {
       state.provider = await connector.connect()
       if (state.provider) {
@@ -34,7 +35,10 @@ const actions = {
       }
       localStorage.setItem('connector', connector.id)
       state.provider.on('disconnect', () => this.dispatch('handleDisconnect'))
+    } else {
+      return false
     }
+    return true
   },
   async disconnectWallet ({ state }) {
     if (
@@ -56,7 +60,9 @@ const actions = {
   },
   async checkBalance({ state }, amount) {
     const balance = await state.web3.eth.getBalance(state.account)
-    if (balance < amount) {
+    const amountWei = new BigNumber(state.web3.utils.toWei(amount))
+    console.log(new BigNumber(balance).comparedTo(amountWei) === -1)
+    if (new BigNumber(balance).comparedTo(amountWei) === -1) {
       return false
     }
     return true

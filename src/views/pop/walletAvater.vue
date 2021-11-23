@@ -4,7 +4,7 @@
     .avatername {{connector.name}}
 </template>
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapMutations } from 'vuex'
 
 export default {
     name: 'wallet',
@@ -21,10 +21,20 @@ export default {
     mounted() {
     },
     methods: {
+        ...mapMutations('animpage', {
+            setIsTitle: 'setIsTitle',
+            setTitleInf: 'setTitleInf'
+        }),
         ...mapActions(['connectWallet', 'disconnectWallet']),
         async connect(connector) {
-            await this.connectWallet(connector)
-            location.reload()
+            if (await this.connectWallet(connector)) {
+                location.reload()
+            } else {
+                this.setTitleInf({
+                    title: 'Error',
+                    content: 'Please install metamask!'
+                })
+            }
         }
     },
     computed: {

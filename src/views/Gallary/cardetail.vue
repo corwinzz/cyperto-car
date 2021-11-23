@@ -67,7 +67,7 @@ export default {
         }
     },
     activated() {
-        this.cid = this.$route.params.cid
+        this.cid = this.$route.query.cid
         this.carInf.name = carTypes[this.cid].name
         this.carInf.other = carTypes[this.cid].description
         this.carInf.modelUrl = carTypes[this.cid].modelUrl
@@ -92,10 +92,10 @@ export default {
             this.$router.push({ name: 'gallary' })
         },
         async toMint() {
-            const fee = this.$route.params.fee.split(' ')[0] // 1.6 ETH
-            console.log(this.$route.params)
-            console.log(this.$route.params.total)
-            if (this.$route.params.rest === this.$route.params.total) {
+            const fee = this.$route.query.fee.split(' ')[0] // 1.6 ETH
+            console.log(this.$route.query)
+            console.log(this.$route.query.total)
+            if (this.$route.query.rest === this.$route.query.total) {
                 this.setTitleInf({
                     title: 'Error',
                     content: 'no more car!'
@@ -118,7 +118,8 @@ export default {
                     })
                     return
                 }
-            } else if (!this.checkBalance(fee)) {
+            }
+            if (!await this.checkBalance(fee)) {
                 // 验证余额不足的情况
                 this.setTitleInf({
                     title: 'Error',
@@ -128,8 +129,8 @@ export default {
             }
             const params = {
                 value: fee,
-                _class: this.$route.params.class,
-                _mode: this.$route.params.mode
+                _class: this.$route.query.class,
+                _mode: this.$route.query.mode
             }
             await this.mint(params)
             this.setTitleInf({
