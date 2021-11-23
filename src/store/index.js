@@ -33,6 +33,11 @@ const actions = {
           state.account = state.web3.currentProvider.accounts[0]
         }
       }
+      state.provider.on('accountsChanged', (accounts) => {
+        // Handle the new accounts, or lack thereof.
+        // "accounts" will always be an array, but it can be empty.
+        state.account = accounts[0]
+      })
       localStorage.setItem('connector', connector.id)
       state.provider.on('disconnect', () => this.dispatch('handleDisconnect'))
     } else {
