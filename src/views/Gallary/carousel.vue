@@ -39,6 +39,7 @@ export default {
         }
     },
     async mounted() {
+        console.log('carousel')
         this.cards = await this.getCarsByOwner()
     },
     methods: {

@@ -6,6 +6,7 @@ import animpage from './modules/animpage'
 import Web3 from 'web3'
 import CyberCarABI from '../plugins/CyberCarABI'
 import { cyberCarContractAddr } from '../plugins/config'
+import { carTypes, colors } from '../plugins/static'
 
 Vue.use(Vuex)
 
@@ -53,6 +54,13 @@ const actions = {
     state.chainId = null
     state.cyberCar = null
   },
+  async checkBalance({ state }, amount) {
+    const balance = await state.web3.eth.getBalance(state.account)
+    if (balance < amount) {
+      return false
+    }
+    return true
+  },
   async startMint({ state }) {
     return await state.cyberCar.methods.startMint().send({
       from: state.account
@@ -98,12 +106,12 @@ const actions = {
         cid: i,
         class: i < _class0 ? 0 : 1,
         mode: i >= _class0 ? i - _class0 : i,
-        nam: 'Amazing digital art',
-        state: 'NORMAL',
+        name: carTypes[i].name,
+        state: carTypes[i].state,
         fee: state.web3.utils.fromWei(arr[i].price, 'ether') + ' ETH',
         rest: arr[i].minted,
         total: arr[i].supply,
-        modelUrl: '/Lamborghini/gltf/high/black.glb'
+        modelUrl: carTypes[i].modelUrl
       }
       carList.push(car)
     }
@@ -142,19 +150,29 @@ const actions = {
     const carIds = await state.cyberCar.methods.getCarsByOwner(state.account).call()
     for (let i = 0; i < carIds.length; i++) {
       const car = await state.cyberCar.methods.getCar(carIds[i]).call()
-      const carObj = {
-        cid: carIds[i],
-        modelUrl: '/Lamborghini/gltf/high/black.glb',
-        state: 'NORMAL',
-        nam: 'Lamborghini',
-        kvs: [{ lab: 'Acceleration', val: car.acceleration },
-          { lab: 'Speed', val: car.speed },
-          { lab: 'Control', val: car.control },
-          { lab: 'Range', val: car.range },
-          { lab: 'Color', val: car.color }],
-        other: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with varius rules and track.'
+      for (let n = 0; n < carTypes.length; n++) {
+        console.log(carTypes[n].class)
+        console.log(carTypes[n].mode)
+        console.log(car.class)
+        console.log(car.mode)
+        if (parseInt(car.class) === carTypes[n].class && parseInt(car.mode) === carTypes[n].mode) {
+          const carObj = {
+            cid: carIds[i],
+            modelUrl: carTypes[n].modelUrl,
+            state: carTypes[n].state,
+            name: carTypes[n].name,
+            kvs: [
+                { lab: 'Acceleration', val: car.acceleration },
+                { lab: 'Speed', val: car.speed },
+                { lab: 'Control', val: car.control },
+                { lab: 'Range', val: car.range },
+                { lab: 'Color', val: colors[car.color] }
+              ],
+            other: carTypes[n].description
+          }
+          cars.push(carObj)
+        }
       }
-      cars.push(carObj)
     }
     return cars
   }

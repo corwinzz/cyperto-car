@@ -5,14 +5,14 @@ div
             threecard(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="480" :hei="480")
         .cdd_inf
             .cdd_state(:style="ccstate") {{carInf.state}}
-            .cdd_name {{carInf.nam}}
+            .cdd_name {{carInf.name}}
             .cdd_kvs
                 .kvs(v-for="itm,idx in carInf.kvs")
                     .kvs_k {{itm.lab}}
                     .kvs_v {{itm.val}}
             .cdd_other {{carInf.other}}
             .cc_mint
-                btnStart(@click.native='toMint' txt="Mint" bkCol='red' )
+                btnStart(@click.native='toMint' txt="Mint" bkCol='red')
     //- .btn_tolist(@click='toList')
     //-     svg-icon(svgName="arrow_left" className="svg_back")
     //-     .btn_txt back to list
@@ -23,8 +23,8 @@ div
 import btnStart from '../../components/BtnStart/btnstart.vue'
 import btn from '../../components/BtnStart/Btn.vue'
 import threecard from '../../components/Three3D/ThreeCard.vue'
+import { carTypes } from '../../plugins/static'
 import { mapMutations, mapState, mapActions } from 'vuex'
-
 let tabCols = {
     NORMAL: 'green',
     RARE: 'red'
@@ -40,7 +40,7 @@ export default {
                 return {
                     modelUrl: '',
                     state: 'NORMAL',
-                    nam: 'Lamborghini',
+                    name: 'Lamborghini',
                     kvs: [{ lab: 'Acceleration', val: '?' },
                         { lab: 'Speed', val: '?' },
                         { lab: 'Control', val: '?' },
@@ -66,41 +66,76 @@ export default {
             }
         }
     },
-    mounted() {
+    activated() {
         this.cid = this.$route.params.cid
+        this.carInf.name = carTypes[this.cid].name
+        this.carInf.other = carTypes[this.cid].description
+        this.carInf.modelUrl = carTypes[this.cid].modelUrl
+        this.carInf.state = carTypes[this.cid].state
+    },
+    mounted() {
+        // this.cid = this.$route.params.cid
+        // console.log('cit' + this.cid)
+        // this.carInf.name = carTypes[this.cid].name
+        // this.carInf.other = carTypes[this.cid].description
+        // this.carInf.modelUrl = carTypes[this.cid].modelUrl
+        // this.carInf.state = carTypes[this.cid].state
     },
     methods: {
-        ...mapActions(['mint', 'isMintable', 'isOnlyWhitelist', 'getWhitelist']),
+        ...mapActions(['mint', 'isMintable', 'isOnlyWhitelist', 'getWhitelist', 'checkBalance']),
         ...mapMutations('animpage', {
             setIsTitle: 'setIsTitle',
             setTitleInf: 'setTitleInf'
         }),
         toList() {
             // this.setIsTitle(true)
-            this.setTitleInf({
-                title: '标题',
-                content: '内容'
-            })
             this.$router.push({ name: 'gallary' })
         },
         async toMint() {
-            if (!await this.isMintable()) {
-                console.log('mint is not start!')
+            const fee = this.$route.params.fee.split(' ')[0] // 1.6 ETH
+            console.log(this.$route.params)
+            console.log(this.$route.params.total)
+            if (this.$route.params.rest === this.$route.params.total) {
+                this.setTitleInf({
+                    title: 'Error',
+                    content: 'no more car!'
+                })
+                return
+            } else if (!await this.isMintable()) {
+                // startMint开关未开启
+                this.setTitleInf({
+                    title: 'Error',
+                    content: 'mint is not start!'
+                })
                 return
             } else if (await this.isOnlyWhitelist()) {
+                // 白名单开启，验证是否是白名单地址
                 const whitelistAddress = await this.getWhitelist()
                 if (!whitelistAddress) {
-                    console.log('only whitelist address can mint!')
+                    this.setTitleInf({
+                        title: 'Error',
+                        content: 'only whitelist address can mint!'
+                    })
                     return
                 }
+            } else if (!this.checkBalance(fee)) {
+                // 验证余额不足的情况
+                this.setTitleInf({
+                    title: 'Error',
+                    content: 'insufficient funds'
+                })
+                return
             }
-            const fee = this.$route.params.fee.split(' ')[0] // 1.6 ETH
             const params = {
                 value: fee,
                 _class: this.$route.params.class,
                 _mode: this.$route.params.mode
             }
-            this.mint(params)
+            await this.mint(params)
+            this.setTitleInf({
+                title: 'Success',
+                content: 'Mint successful!'
+            })
         }
     }
 }
