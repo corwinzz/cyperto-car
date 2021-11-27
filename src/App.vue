@@ -1,5 +1,5 @@
 <template lang='pug'>
-div(id="app")
+.app
     .main
         keep-alive
             transition(name="fade")
@@ -155,7 +155,7 @@ export default {
     width: 24px;
     color: white;
 }
-#app{
+.app{
     position: relative;
     margin: 0 auto;
     width: 100%;
