@@ -1,0 +1,11 @@
+.loaded{
+    animation: fadeout 1000ms;
+}
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

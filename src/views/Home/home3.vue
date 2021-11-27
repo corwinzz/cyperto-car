@@ -42,8 +42,8 @@ export default {
     z-index: 99;
 }
 .home2{
-    height: 768px;
-    width: 1440px;
+    height: 100%;
+    width: 100%;
     // background: url('/img/1.gif') no-repeat center fixed;
     // background-size:100% 100%;
 

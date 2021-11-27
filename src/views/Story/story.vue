@@ -1,5 +1,5 @@
 <template lang='pug'>
-.story
+.story(ref='story')
     .blurWindow(v-show='wind==1' @click='wind=2' ref='blurWindow')
         .title INTRODUCTION
         .txt Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track.
@@ -29,9 +29,13 @@ export default {
         }
     },
     mounted() {
+        this.toggle()
     },
     methods: {
-
+        toggle() {
+            let dom = this.$refs.story
+            dom.classList.toggle('anm_bk_show', true)
+        }
     },
     computed: {
         pageInf() {
@@ -54,6 +58,7 @@ export default {
                 let dom = this.$refs.blurWindow
                 dom.classList.toggle('anm_hide', false)
                 dom.classList.toggle('anm_show', true)
+                this.toggle()
             }
         }
     }
@@ -107,10 +112,10 @@ export default {
     }
 }
 .story{
-    height: 768px;
-    width: 1440px;
+    height: 100%;
+    width: 100%;
     background: url('/img/b_story1.png') no-repeat center fixed;
-    background-size:100% 100%;
+    background-size:100% 110%;
 }
 .blurWindow{
     z-index: 2;
@@ -150,7 +155,7 @@ export default {
 .blurWindow.page2{
     width: 1110px;
     height: 467px;
-    left: 165px;
+    left: calc(50% - 555px);
     top: 200px;
     .inner{
         height: 353px;
@@ -164,7 +169,7 @@ export default {
             width: 115px;
             border-radius: 57px;
             background-image: url('/img/ppp.png');
-            background-size:100% 100%;
+            background-size:100% 110%;
         }
         .txt{
             height: 34px;
@@ -201,7 +206,7 @@ export default {
 }
 .blurWindow::before {
     background: url('/img/b_story1.png') no-repeat center fixed;
-    background-size:100% 100%;
+    background-size:100% 110%;
     content: '';
     display: block;
     position: absolute;

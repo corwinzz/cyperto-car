@@ -1,6 +1,7 @@
 <template lang='pug'>
-.threecard
-    .card_viw_3d(:ref="`card_viw_3d_${cid}`")
+.threecard(:ref="`threecard_${cid}`" @mouseenter="onMouseEnter")
+    .card_viw_3d(:ref="`card_viw_3d_${cid}`" v-show="isLoaded" ref='threecardview')
+    img.preloadimage(:width="wid" :height='hei' :src='preloadImg' v-show="!isLoaded" ref='threecardimg' :class="[isLoaded?'loaded':'']")
 </template>
 
 <script >
@@ -15,6 +16,10 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 let conf = { path_draco: '/lib/draco/gltf/' }
 export default Vue.extend({
     props: {
+        preloadImg: {
+            type: String,
+            default: '/img/car.png'
+        },
         modelUrl: { type: String, default: '' },
         cid: { type: Number, default: 0 },
         hei: { type: Number, default: 0 },
@@ -22,11 +27,14 @@ export default Vue.extend({
     },
     data() {
         return {
-
+            isLoaded: false,
+            isLoading: false
         }
     },
     watch: {
-        modelUrl: function() { this.addModels() }
+        modelUrl: function() {
+
+        }
     },
     created() {
         let t = this
@@ -39,15 +47,20 @@ export default Vue.extend({
         t.mouse = new Vector2()
     },
     mounted() {
-        let t = this
-        t.init()
-        t.addModels()
     },
     methods: {
+        onMouseEnter() {
+            if (!this.isLoaded && !this.isLoading) {
+                if (this.scene === null) {
+                    this.init()
+                }
+                this.addModels()
+            }
+        },
         addModels() {
             let t = this
+            t.isLoading = true
             if (t.modelUrl === '') return
-            console.log(this.modelUrl)
             t.gp_obj.children = []
             const dracoLoader = new DRACOLoader()
             dracoLoader.setDecoderPath(conf.path_draco)
@@ -55,6 +68,8 @@ export default Vue.extend({
             loader.setDRACOLoader(dracoLoader)
             loader.load(t.modelUrl, function(gltf) {
                 t.gp_obj.add(gltf.scene)
+                t.isLoading = false
+                t.isLoaded = true
             })
         },
         load(e) {
@@ -93,14 +108,12 @@ export default Vue.extend({
         init() {
             let t = this
             const mDom = t.$refs[`card_viw_3d_${t.cid}`]
-            let hei = mDom.offsetHeight
-            let wid = mDom.offsetWidth
             t.scene = new THREE.Scene()
-            t.camera = new THREE.PerspectiveCamera(45, wid / hei, 0.01, 100000)
-            t.camera.position.set(2000, 2000, 2000)
+            t.camera = new THREE.PerspectiveCamera(45, t.wid / t.hei, 0.01, 100000)
+            t.camera.position.set(800, 800, 800)
             t.renderer = new THREE.WebGLRenderer({ antialias: true })
             t.renderer.setClearColor(0x2d2d2d, 1.0)
-            t.renderer.setSize(wid, hei)
+            t.renderer.setSize(t.wid, t.hei)
             mDom.appendChild(t.renderer.domElement)
 
             t.controls = new OrbitControls(t.camera, t.renderer.domElement)
@@ -112,19 +125,18 @@ export default Vue.extend({
             t.initScene()
             t.animate()
         },
-        onWindowResize() {
-            let t = this
-            const mDom = t.$refs[`card_viw_3d_${t.cid}`]
-            let hei = mDom.offsetHeight
-            let wid = mDom.offsetWidth
-            t.camera.aspect = wid / hei
-            t.camera.updateProjectionMatrix()
-            t.renderer.setSize(wid, hei)
-            t.render()
-        },
         initLight() {
             let t = this
             t.scene.add(new THREE.AmbientLight(0xffffff))
+            let point = new THREE.PointLight(0xffffff, 5)
+            point.position.set(50000, 50000, 50000)
+            t.scene.add(point)
+            let point1 = new THREE.PointLight(0xffffff, 5)
+            point1.position.set(0, -50000, 50000)
+            t.scene.add(point1)
+            let point2 = new THREE.PointLight(0xffffff, 5)
+            point2.position.set(-50000, 0, 50000)
+            t.scene.add(point2)
         },
         initScene() {
             let t = this
@@ -153,5 +165,12 @@ export default Vue.extend({
         height: 100%;
         width: 100%;
     }
+}
+.preloadimage{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
 }
 </style>

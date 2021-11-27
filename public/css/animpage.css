@@ -1,0 +1,54 @@
+.page0{
+    animation: page0 500ms;
+}
+@keyframes page0 {
+    0% { }
+    100% {
+        top: 0px;
+    }
+}
+.page1{
+    animation: page1 500ms;
+}
+@keyframes page1 {
+    0% { }
+    100% {
+        top: 40px;
+    }
+}
+.page2{
+    animation: page2 500ms;
+}
+@keyframes page2 {
+    0% { }
+    100% {
+        top: 80px;
+    }
+}
+.page3{
+    animation: page3 500ms;
+}
+@keyframes page3 {
+    0% { }
+    100% {
+        top: 120px;
+    }
+}
+.page4{
+    animation: page4 500ms;
+}
+@keyframes page4 {
+    0% { }
+    100% {
+        top: 160px;
+    }
+}
+.page5{
+    animation: page5 500ms;
+}
+@keyframes page5 {
+    0% { }
+    100% {
+        top: 200px;
+    }
+}

@@ -1,5 +1,5 @@
 <template lang='pug'>
-.roadmap
+.roadmap(ref='roadmap')
     .blurWindow(v-show='wind==1')
         .title ROADMAP
         .txt Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track.
@@ -65,9 +65,20 @@ export default {
         }
     },
     mounted() {
+        this.toggle()
     },
     methods: {
-
+        toggle() {
+            let dom = this.$refs.roadmap
+            dom.classList.toggle('anm_bk_show', true)
+        }
+    },
+    watch: {
+        $route(to, from) {
+            if (to.name === 'roadmap') {
+                this.toggle()
+            }
+        }
     }
 }
 </script>
@@ -83,19 +94,16 @@ export default {
     color: #EA3344;
 }
 .roadmap{
-    height: 768px;
-    width: 1440px;
+    height: 100%;
+    width: 100%;
     background: url('/img/b_roadmap1.png') no-repeat center fixed;
     background-size:100% 100%;
-    // opacity: 0.7;
-    // background-position: center center;
 }
 .blurWindow{
     z-index: 2;
     position: relative;
     left: 80px;
     top: 175px;
-    // box-shadow: 0 0 5px 1px #fff;
     color: #fff;
     font-size: 15px;
     overflow: hidden;
@@ -123,50 +131,6 @@ export default {
         width:50px ;
         height: 0px;
         border-top:1px solid #EA3344;
-    }
-}
-.blurWindow.page2{
-    width: 1110px;
-    height: 467px;
-    left: 165px;
-    top: 200px;
-    .inner{
-        height: 353px;
-        width: 730px;
-        margin: 55px auto;
-        display: flex;
-        flex-direction: column;
-        .avater{
-            margin: auto;
-            height: 115px;
-            width: 115px;
-            border-radius: 57px;
-            background-image: url('/img/ppp.png');
-            background-size:100% 100%;
-        }
-        .txt{
-            height: 34px;
-            line-height: 34px;
-            font-size: 24px;
-            text-align: center;
-        }
-        .line{
-            margin:30px auto;
-            width:52px ;
-            height: 0px;
-            border-top:1px solid #EA3344;
-        }
-        .nam{
-            height: 28px;
-            line-height: 28px;
-            text-align: center;
-            font-size: 18px;
-        }
-        .foot{
-            height: 24px;
-            font-size: 14px;
-            text-align: center;
-        }
     }
 }
 .blurWindow::before {

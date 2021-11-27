@@ -115,7 +115,7 @@ export default Vue.extend({
             let wid = mDom.offsetWidth
             t.scene = new THREE.Scene()
             t.camera = new THREE.PerspectiveCamera(45, wid / hei, 0.01, 1000)
-            t.camera.position.set(0.5, 6, 5)
+            t.camera.position.set(2.5, 2.5, 6.5)
             t.renderer = new THREE.WebGLRenderer({ antialias: true })
             t.renderer.setClearColor(0x2d2d2d, 1.0)
             t.renderer.setSize(wid, hei)
@@ -157,7 +157,9 @@ export default Vue.extend({
         initLight() {
             let t = this
             t.scene.add(new THREE.AmbientLight(0x808080))
-            t.scene.add(new THREE.PointLight(0xaaa, 0.5))
+            let point = new THREE.PointLight(0xaaaaaa, 0.5)
+            point.position.set(1200, 1200, 1200)
+            t.scene.add(point)
         },
         initScene() {
             let t = this

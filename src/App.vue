@@ -21,8 +21,8 @@ div(id="app")
                     btnStart(txt="Back to Home" bkCol='#5D5FEF')
     //- wallet(v-show="route=='gallary' && isWallet" @onClose="isWallet=false")
     .videoIcon(@click="switchMusic")
-        img(v-if='isMuiscPlay' src='/img/sr_audio_1.gif' width='24' height='24')
-        svg-font(v-else fontName="sraudio" class="svg_slide_audio")
+        img(v-if='isMuiscPlay' src='/img/sr_audio_1.gif' width='24' height='24' )
+        svg-font(v-else fontName="sraudio" class="svg_slide_audio" )
     Audio(muted autoplay controls="controls" loop="loop" preload="auto" width="420" ref="backgroundmuisc" hidden)
     wallet(v-show="isGallary && isWallet" @onClose="isWallet=false")
     Title(v-show="isGallary && getIsTitle")
@@ -114,7 +114,7 @@ export default {
             let t = this
             t.isInteractived = true
             t.audio.addEventListener('canplay', t.musicLoaded())
-            // document.removeEventListener('click', t.firstClick)
+            document.removeEventListener('click', t.firstClick)
         },
         ...mapActions(['connectWallet', 'disconnectWallet']),
         linkTo(page) {
@@ -158,8 +158,10 @@ export default {
 #app{
     position: relative;
     margin: 0 auto;
-    width: 1440px;
-    height: 768px;
+    width: 100%;
+    height: 100%;
+    min-width: 1440px;
+    min-height: 768px;
     background: black;
     font-family: DMSans_R;
     header{
@@ -190,9 +192,9 @@ export default {
         position: absolute;
         width: 24px;
         height: 24px;
-        top:624px;
+        bottom:150px;
         right: 60px;
-        // border: 1px solid red;
+        z-index: 999;
     }
 }
 .fade-enter-active, .fade-leave-avtive {
