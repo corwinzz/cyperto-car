@@ -50,7 +50,7 @@ export default {
                 txt: 'Back to Home'
             }],
             isMuiscPlay: false,
-            src: '/music/平凡之路.mp3',
+            src: './music/平凡之路.mp3',
             audio: undefined,
             isInteractived: false,
             isScrolling: false,
