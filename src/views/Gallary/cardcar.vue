@@ -110,7 +110,7 @@ export default {
             font-size: 12px;
             font-weight: 700px;
             font-family: DM Snas;
-            border:3px solid red;
+            border:1px solid red;
             padding-bottom:22px;
             padding-left:5px ;
             padding-right: 5px;

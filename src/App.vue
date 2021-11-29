@@ -26,9 +26,11 @@
     Audio(muted autoplay controls="controls" loop="loop" preload="auto" width="420" ref="backgroundmuisc" hidden)
     wallet(v-show="isGallary && isWallet" @onClose="isWallet=false")
     Title(v-show="isGallary && getIsTitle")
+    startMusicCard(v-show='isFisrtStartMusic' @switch='firstSwitch')
 </template>
 
 <script>
+import startMusicCard from './views/pop/startMusicCard.vue'
 import wallet from './views/pop/wallet.vue'
 import Title from './views/pop/Title.vue'
 import btnStart from './components/BtnStart/btnstart.vue'
@@ -38,7 +40,7 @@ import { connectors } from './connectors'
 export default {
     name: 'App',
     components: {
-        btnStart, wallet, Title
+        btnStart, wallet, Title, startMusicCard
     },
     data() {
         return {
@@ -50,11 +52,12 @@ export default {
                 txt: 'Back to Home'
             }],
             isMuiscPlay: false,
-            src: '/music/平凡之路.mp3',
+            src: '/music/TheExtremeSport.mp3',
             audio: undefined,
             isInteractived: false,
             isScrolling: false,
-            routelink: ['Home', 'garage', 'story', 'roadmap', 'partners', 'gallary']
+            routelink: ['Home', 'garage', 'story', 'roadmap', 'partners', 'gallary'],
+            isFisrtStartMusic: true
         }
     },
     async mounted() {
@@ -91,6 +94,13 @@ export default {
         }
     },
     methods: {
+        firstSwitch(isplaymusic) {
+            let t = this
+            this.isFisrtStartMusic = false
+            this.isMuiscPlay = !isplaymusic
+            this.switchMusic()
+            document.removeEventListener('click', t.firstClick)
+        },
         handleScroll(e) {
             let direction = e.deltaY > 0 ? 'down' : 'up'
             if (this.isScrolling) return
@@ -180,6 +190,7 @@ export default {
             display: flex;
             .routermain{
                 margin-left:20px;
+                text-align: center;
             }
         }
     }

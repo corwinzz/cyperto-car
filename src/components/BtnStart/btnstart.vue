@@ -47,10 +47,9 @@ export default {
     height: 43px;
     position:absolute;
     .txt{
-
+        width: 100%;
         position:absolute;
-        margin-left: 26px;
-        margin-top: 7px;
+        margin-top: 6px;
         top: 0px;
         left: 0px;
         color: white;
@@ -59,6 +58,7 @@ export default {
         font-weight: 700;
         line-height: 28px;
         letter-spacing: 2px;
+        text-align: center;
     }
 }
 .svg_avater{

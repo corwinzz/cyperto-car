@@ -3,10 +3,9 @@
 .hypelink
     svg-font(fontName="twitter" class="svg_avater")
     svg-font(fontName="telegram" class="svg_avater")
-    svg-font(fontName="reddit3" class="svg_avater")
+    svg-font(fontName="reddit_a" class="svg_avater")
     svg-font(fontName="medium" class="svg_avater")
     svg-font(fontName="github" class="svg_avater")
-
 </template>
 
 <script>

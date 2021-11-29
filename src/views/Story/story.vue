@@ -1,9 +1,11 @@
 <template lang='pug'>
 .story(ref='story')
-    .blurWindow(v-show='wind==1' @click='wind=2' ref='blurWindow')
+    .blurWindow(v-show='wind==1'  ref='blurWindow')
         .title INTRODUCTION
         .txt Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track.
         .line
+        .routermain(style="width:173px" @click='wind=2')
+            btnStart(txt="View The Details" bkCol='#EA3344')
     .blurWindow(v-show="wind==2" class="page2"  @click='wind=1')
         .inner
             .avater
@@ -13,14 +15,16 @@
             .line
             .nam Linh Nguyen
             .foot Founder at CyberCar
+            .btn_close Close
 </template>
 
 <script>
+import btnStart from '../../components/BtnStart/btnstart.vue'
 import hypelink from '../hypelink.vue'
 export default {
     name: 'story',
     components: {
-        hypelink
+        hypelink, btnStart
     },
     data() {
         return {
@@ -65,6 +69,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import url('../../common/style/common.less');
 .anm_hide{
     animation: anm1 500ms reverse;
 }
@@ -128,7 +133,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 460px;
-    height: 190px;
+    height: 252px;
     padding: 20px;
     .title{
         height: 48px;
@@ -147,8 +152,10 @@ export default {
     }
     .line{
         margin-top:20px ;
+        margin-left: 0px;
         width:50px ;
         height: 0px;
+        text-align: left;
         border-top:1px solid #EA3344;
     }
 }
@@ -158,9 +165,9 @@ export default {
     left: calc(50% - 555px);
     top: 200px;
     .inner{
-        height: 353px;
-        width: 730px;
-        margin: 55px auto;
+        height: 467px;
+        width: 750px;
+        margin: 20px auto;
         display: flex;
         flex-direction: column;
         .avater{
@@ -169,7 +176,7 @@ export default {
             width: 115px;
             border-radius: 57px;
             background-image: url('/img/ppp.png');
-            background-size:100% 110%;
+            background-size:100% 100%;
         }
         .txt{
             height: 34px;
@@ -201,6 +208,17 @@ export default {
             text-align: center;
             font-weight: 400;
             letter-spacing: -0.3px;
+        }
+        .btn_close{
+            width: 230px;
+            height: 40px;
+            line-height: 40px;
+            .f_d();
+            font-size: 14px;
+            border-radius: 20px;
+            border: 2px solid #777E90;
+            text-align: center;
+            margin: 15px auto;
         }
     }
 }
