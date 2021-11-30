@@ -23,6 +23,7 @@ const actions = {
   async connectWallet({ state, commit }, connector) {
     if (connector && connector.isInstalled()) {
       state.provider = await connector.connect()
+      state.chainId = state.provider.chainId
       if (state.provider) {
         state.web3 = new Web3(state.provider)
         state.cyberCar = new state.web3.eth.Contract(CyberCarABI, cyberCarContractAddr)

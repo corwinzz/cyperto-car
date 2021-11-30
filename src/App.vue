@@ -79,7 +79,7 @@ export default {
     },
     computed: {
         ...mapGetters('animpage', ['getIsTitle']),
-        ...mapState(['account']),
+        ...mapState(['account', 'chainId']),
         route() {
             return this.$route.name
         },

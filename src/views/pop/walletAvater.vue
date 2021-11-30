@@ -28,7 +28,18 @@ export default {
         ...mapActions(['connectWallet', 'disconnectWallet']),
         async connect(connector) {
             if (await this.connectWallet(connector)) {
-                location.reload()
+                console.log(this.chainId)
+                if (this.chainId !== '0x13881' &&
+                    this.chainId !== '0x89' &&
+                    this.chainId !== 80001 &&
+                    this.chainId !== 137) {
+                    this.setTitleInf({
+                        title: 'Error',
+                        content: 'Please switch the polygon network!'
+                    })
+                } else {
+                    location.reload()
+                }
             } else {
                 this.setTitleInf({
                     title: 'Error',
@@ -38,7 +49,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['account'])
+        ...mapState(['account', 'chainId'])
     }
 }
 </script>
