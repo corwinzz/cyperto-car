@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 const routes = [{
     path: '/',
-    redirect: '/home'
+    redirect: '/homeH5'
 }, {
     path: '/home2',
     name: 'home2',
@@ -17,6 +17,10 @@ const routes = [{
     path: '/home3',
     name: 'home3',
     component: () => import('../views/Home/home3.vue')
+}, {
+    path: '/homeH5',
+    name: 'homeH5',
+    component: () => import('../AppH5.vue')
 }, {
     path: '/AppHome',
     name: 'AppHome',

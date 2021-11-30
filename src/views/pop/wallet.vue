@@ -32,25 +32,22 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import url('../../common/style/common.less');
 .wallet{
     position:absolute;
-    top:calc(50% - 240px) ;
-    left:calc(50% - 360px);
-    width: 720px;
-    height: 475px;
+    top:calc(50% - 210px) ;
+    left:calc(50% - 160px);
+    width: 315px;
+    height: 420px;
     background: black;
-    // border: 1px solid red;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    color: white;
     .wlt_header{
-        height: 78px;
         padding: 30px;
-        line-height:38px ;
-        text-align: center;
-        font-family: Mon;
-        font-weight: 400;
-        font-size: 32px;
-        color: white;
+       .f24();
+       .f_mon();
     }
     .wlt_markers{
         display: flex;
@@ -65,7 +62,7 @@ export default {
             line-height: 60px;
             font-size: 14px;
             font-weight: 700;
-            width: 355px;
+            width: 200px;
             margin: auto;
             text-align: center;
             border-radius: 30px;

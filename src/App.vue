@@ -1,25 +1,24 @@
 <template lang='pug'>
 .app
-    .main
-        keep-alive
-            transition(name="fade")
-                router-view(:isWallet='isWallet')
-    header
-        img.mark(src='img/logo.gif' width='223' height='30' style="margin-left:80px;margin-top:34px")
-        .btns
-            div(v-show='isHomePage')
-                .routermain(style="width:173px" @click="linkTo('gallary')" )
-                    btnStart(txt="Start Game_" bkCol='#EA3344')
-            template(v-show='isGallary')
-                .routermain(style="width:173px" @click="showWallet()" v-if="isGallary && !account")
-                    btnStart(txt="Connect" bkCol='#EA3344')
-                .routermain(style="width:173px" @click="showWallet()" v-if="isGallary && account")
-                    btnStart(:txt="account.substring(0,10) + '...'" bkCol='#EA3344')
-                .routermain(style="width:173px" @click="linkTo('carousel')" v-show="isGallary")
-                    btnStart(txt="My Car" bkCol='#EF925D')
-                .routermain(style="width:173px" @click="linkTo('Home')" v-show='isGallary')
-                    btnStart(txt="Back to Home" bkCol='#5D5FEF')
-    //- wallet(v-show="route=='gallary' && isWallet" @onClose="isWallet=false")
+    .header(v-show='isHomePage')
+        img.mark(src='img/logo.gif' width='116' height='15' style="margin-left:30px;margin-top:37px")
+        .routermain(style="width:158px" @click="linkTo('gallary')")
+            btnStart(txt="Start Game_" bkCol='#EA3344' :wid="128" )
+    .header1(v-show='isGallary')
+        .routermain(@click="showWallet()")
+            btnStart(txt="Connect" bkCol='#EA3344')
+        .routermain(@click="linkTo('HomeH5')")
+            btnStart(txt="Back to Home" bkCol='#5D5FEF')
+    .header2(v-show='isMini')
+        .routermain(style="width:100px" @click="showWallet()")
+            btnStart(:txt="'...'" bkCol='#EA3344' :wid='100')
+            //- btnStart(:txt="account.substring(0,10) + '...'" bkCol='#EA3344' :wid='100')
+        .routermain(style="width:100px" @click="linkTo('carousel')" )
+            btnStart(txt="My Car" bkCol='#EF925D' :wid='100')
+        .routermain(style="width:100px" @click="linkTo('HomeH5')")
+            btnStart(txt="Back to Home" bkCol='#5D5FEF' :wid='100')
+    keep-alive
+        router-view(:isWallet='isWallet')
     .videoIcon(@click="switchMusic")
         img(v-if='isMuiscPlay' src='/img/sr_audio_1.gif' width='24' height='24' )
         svg-font(v-else fontName="sraudio" class="svg_slide_audio" )
@@ -62,7 +61,7 @@ export default {
         t.$nextTick(() => {
             t.audio = t.$refs.backgroundmuisc
             t.audio.setAttribute('src', t.src)
-            document.addEventListener('click', t.firstClick, false)
+            // document.addEventListener('click', t.firstClick, false)
             document.addEventListener('mousewheel', t.handleScroll, true)
         })
         await this.connectWallet(this.connectors[localStorage.getItem('connector')])
@@ -84,10 +83,13 @@ export default {
             return this.route === 'Home'
         },
         isHomePage() {
-            return ['story', 'garage', 'partners', 'roadmap'].indexOf(this.route) > -1
+            return ['homeH5'].indexOf(this.route) > -1
         },
         isGallary() {
-            return ['gallary', 'cardetail', 'carousel'].indexOf(this.route) > -1
+            return ['gallary'].indexOf(this.route) > -1
+        },
+        isMini() {
+            return ['cardetail', 'carousel'].indexOf(this.route) > -1
         }
     },
     methods: {
@@ -118,6 +120,7 @@ export default {
         },
         ...mapActions(['connectWallet', 'disconnectWallet']),
         linkTo(page) {
+            console.log(page)
             this.$router.push(page)
         },
         showWallet() {
@@ -157,50 +160,43 @@ export default {
 }
 .app{
     position: relative;
-    margin: 0 auto;
     width: 100%;
     height: 100%;
-    min-width: 1440px;
-    min-height: 768px;
     background: black;
     font-family: DMSans_R;
-    header{
+    .header,.header1,.header2{
         z-index: 99;
-        position: absolute;
+        position:relative;
         top: 0px;
+        left: 0px;
         width: 100%;
         height: 90px;
-        background-color: transparent;
+        background-color: black;
         opacity: 0.8;
         display: flex;
         justify-content: space-between;
-        .btns{
-            margin-top: 23px;
-            margin-right: 40px;
-            display: flex;
-            .routermain{
-                margin-left:20px;
-            }
+        .routermain{
+            width: 128px;
+            height: 32px;
+            position: relative;
+            margin-top: 29px;
         }
     }
-    .main{
-        margin: auto;
-        width: 100%;
-        height: 100%;
+    .header1,.header2{
+        padding: 0px 40px;
+        background:none;
+    }
+    .header2{
+        padding: 0px 5px;
     }
     .videoIcon{
-        position: absolute;
+        position: relative;
         width: 24px;
         height: 24px;
-        bottom:150px;
+        bottom:30px;
         right: 60px;
         z-index: 999;
     }
 }
-.fade-enter-active, .fade-leave-avtive {
-    transition: opacity 3s
-}
-.fade-enter, .fade-leave-to {
-    opacity: 0
-}
+
 </style>

@@ -13,7 +13,7 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    wid: 200,
+                    wid: 140,
                     hei: 40,
                     txt: 'Back to Market',
                     bkColor: '#444'
@@ -82,10 +82,9 @@ export default {
         left: 0px;
         color: white;
         font-family: DMSans_R;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 700;
-        line-height: 20px;
-        letter-spacing: 2px;
+        line-height: 16px;
         text-align: center;
     }
 }

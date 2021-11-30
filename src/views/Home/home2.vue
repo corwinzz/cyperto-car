@@ -64,7 +64,7 @@ export default {
             margin-bottom: 40px;
         }
         .hc_t2{
-            width: 540px;
+            width: 100%;
             height: 140px;
             line-height: 28px;
             font-family: DMSans_R;

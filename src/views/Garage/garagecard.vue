@@ -66,7 +66,7 @@ export default {
 @keyframes anm {
     0% {
         left: 285px;
-        width: 540px ;
+
         opacity: 0;
     }
     80% {
@@ -83,7 +83,7 @@ export default {
 @keyframes anm1 {
     0% {
         left: 285px;
-        width: 540px ;
+
         opacity: 0;
     }
     80% {

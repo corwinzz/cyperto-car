@@ -35,37 +35,30 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import url('../../common/style/common.less');
 .Title{
     position:absolute;
-    top:calc(50% - 150px) ;
-    left: calc(50% - 530px/2);
-    width: 530px;
-    height: 297px;
+    top:calc(50% - 160px) ;
+    left: calc(50% - 160px);
+    width: 315px;
+    height: 325px;
     background: black;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0px 20px 30px;
+    color: white;
     .Title_header{
         margin-top: 30px;
-        height: 38px;
-        line-height:38px ;
-        text-align: center;
-        font-family: Mon;
-        font-size: 32px;
-        color: white;
+        height: 24px;
+        .f24();
+        .f_mon();
         margin-bottom: 10px;
     }
     .Title_markers{
         margin: 20px;
-        width: 490px;
-        height: 80px;
-        line-height: 20px;
-        font-family: DMSans_R;
-        font-size: 16px;
-        font-weight: 400;
-        text-align: center;
-        color: #ffffff;
+        .f20_14();
+        .f_d();
         letter-spacing: 1px;
     }
     .Title_foot{
@@ -76,7 +69,7 @@ export default {
             line-height: 60px;
             font-size: 14px;
             font-weight: 700;
-            width: 355px;
+            width: 200px;
             margin: auto;
             text-align: center;
             border-radius: 30px;

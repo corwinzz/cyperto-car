@@ -3,7 +3,7 @@
 .hypelink
     svg-font(fontName="twitter" class="svg_avater")
     svg-font(fontName="telegram" class="svg_avater")
-    svg-font(fontName="reddit3" class="svg_avater")
+    svg-font(fontName="reddit_a" class="svg_avater")
     svg-font(fontName="medium" class="svg_avater")
     svg-font(fontName="github" class="svg_avater")
 
@@ -27,18 +27,21 @@ export default {
 <style lang="less" scoped>
 
 .hypelink{
-    flex: 1;
-    height: 80px;
-    padding-top:21px ;
-    padding-right: 60px;
+    position: absolute;
+    bottom: 0px;
+    margin-top: 20px;
+    width: 100%;
+    height: 90px;
+    padding-top:30px ;
     display: flex;
-    justify-content:flex-end ;
+    justify-content:space-around;
+    border-top: 1px solid red;
+    line-height: 30px;
     .svg_avater{
         margin: 0px 8px;
-        width: 16px;
-        height: 16px;
+        width: 30px;
+        height: 30px;
         color: white;
-        font-size: 16px;
     }
 }
 </style>

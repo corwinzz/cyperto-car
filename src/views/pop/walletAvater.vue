@@ -44,20 +44,20 @@ export default {
 </script>
 <style lang="less" scoped>
 .wallet_avater{
-    width: 360px;
-    height: 266px;
+    width: 155px;
+    height: 226px;
     padding-top: 10px;
     display: flex;
     flex-direction: column;
     .avatericon{
-        margin: 20px auto;
+        margin:10px;
         width: 135px;
         height: 135px;
     }
     .avatername{
-        height: 48px;
-        line-height: 48px;
-        font-size: 34px;
+        height: 22px;
+        line-height: 22px;
+        font-size: 16px;
         font-family: DMSans_R;
         font-weight: Bold;
         text-align: center;

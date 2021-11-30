@@ -3,8 +3,6 @@
     .homecard_t1 CyberCar
     .homecard_t2 PITCH DECK
     .homecard_t3 "Thanks for Playing My Game"
-    .routermain( @click="linkTo('gallary')" )
-        btnStart(txt="Start Game_" bkCol='#EA3344')
 </template>
 
 <script>
@@ -57,80 +55,30 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.anm_hide{
-    animation: anm1 500ms;
-}
-.anm_show{
-    animation: anm 300ms reverse;
-}
-@keyframes anm {
-    0% {
-        left: 80px;
-        transform:scale(1,1);
-        opacity: 1;
-    }
-    80% {
-        left: 280px;
-        transform:scale(0.7,0.7);
-        opacity: 0;
-    }
-    100% {
-        left: 280px;
-        transform:scale(0.7,0.7);
-        opacity: 0;
-    }
-}
-@keyframes anm1 {
-    0% {
-        left: 80px;
-        transform:scale(1,1);
-        opacity: 1;
-    }
-    80% {
-        left: 280px;
-        transform:scale(0.7,0.7);
-        opacity: 0;
-    }
-    100% {
-        left: 280px;
-        transform:scale(0.7,0.7);
-        opacity: 0;
-    }
-}
+@import url('../../common/style/common.less');
 .homecard1{
-    pointer-events: none;
     position:absolute;
-    left: 80px;
-    top: 210px;
-    width: 540px;
-    height: 288px;
+    left: 30px;
+    top: 120px;
+    width: 270px;
+    height: 226px;
     background-color: rgba(0,0,0,0.01);
+    color: white;
     .homecard_t1{
-        margin-bottom: 6px;
-        height: 96px;
-        line-height: 96px;
-        font-size: 80px;
-        font-weight: 400;
-        font-family: Mon;
-        color: white;
+        height: 48px;
+        .f48();
+        .f_mon();
     }
     .homecard_t2{
-        height: 48px;
-        line-height: 48px;
-        font-size: 40px;
-        font-weight: 400;
-        color: white;
-        font-family: Mon;
+        height: 24px;
+        .f24();
+        .f_mon();
         margin-bottom: 20px;
     }
     .homecard_t3{
         height: 24px;
-        line-height: 24px;
-        font-size: 20px;
-        font-weight: 400;
-        color: white;
-        font-family: DMSans_R;
-        letter-spacing: 1px;
+        .f14();
+        .f_d();
         margin-bottom: 30px;
     }
     .routermain{

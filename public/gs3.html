@@ -1,0 +1,46 @@
+<html>
+<head>
+<link href="css/lianxi.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<style>
+    #div1{
+     width:100px;
+     height:100px;
+     border-radius:50%;
+     background-color:#0099FF;
+    }
+    .t{
+        width:800px;
+        height:800px;
+        background-color:yellow;
+    }
+</style>
+</head>
+
+
+<body>
+<div class="t">
+ <div id="div1">
+ 
+ </div>
+</div>
+ 
+ <script type="text/javascript" src="js/Untitled-1.js"></script>
+</body>
+</html>
+
+
+<script>
+
+$(document).ready(function(){
+
+ $(".t").mousemove(function(event){
+ var evt = event || body.t.event;
+ var x=event.pageX;
+ var y= event.pageY;
+ 
+ $("#div1").css({"margin-left":x+"px","position":"absolute","top":y+"px"});   
+ })    
+})
+
+</script>

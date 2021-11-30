@@ -1,13 +1,17 @@
 <template lang='pug'>
 .btnStart
-    svg-font(fontName="startgame" class="svg_avater" :style="btnstyle")
-    .txt {{txt}}
+    svg-font(:fontName="`btn${wid}x32`" class="svg_avater" :style="btnstyle")
+    .txt(:style="fontStyle") {{txt}}
 </template>
 
 <script>
 export default {
     name: 'App',
     props: {
+        wid: {
+            type: Number,
+            default: 128
+        },
         txt: {
             type: String,
             default: ''
@@ -28,7 +32,16 @@ export default {
     computed: {
         btnstyle() {
             return {
-                color: this.bkCol
+                color: this.bkCol,
+                width: this.wid + 'px',
+                height: 32 + 'px'
+            }
+        },
+        fontStyle() {
+            let size = this.wid < 101 ? 10 : 14
+            return {
+                fontSize: size + 'px',
+                width: this.wid + 'px'
             }
         }
     },
@@ -43,14 +56,11 @@ export default {
 .btnStart{
     z-index: 10;
     margin: auto;
-    width: 172px;
-    height: 43px;
-    position:absolute;
+    height: 32px;
+    position:relative;
     .txt{
-
         position:absolute;
-        margin-left: 26px;
-        margin-top: 7px;
+        width: 100%;
         top: 0px;
         left: 0px;
         color: white;
@@ -58,14 +68,14 @@ export default {
         font-size: 14px;
         font-weight: 700;
         line-height: 28px;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
+        text-align: center;
     }
 }
 .svg_avater{
-    width: 172px;
-    height: 43px;
+    width: 128px;
+    height: 32px;
     color: red;
-    // font-size: 100px;
 }
 
 </style>

@@ -37,13 +37,13 @@ export default {
 
 <style lang="less" scoped>
 .gallary{
-    width: calc(100% - 20px);
-    height: calc(100% - 120px);
+    width: calc(100% - 10px);
+    height: calc(100% - 90px);
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     position:absolute;
-    top: 120px;
-    left: 20px;
+    top: 0px;
+    left: 10px;
     overflow: auto;
 }
 .scrollbar {

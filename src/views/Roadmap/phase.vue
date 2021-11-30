@@ -56,9 +56,8 @@ export default {
     color: #EA3344;
 }
 .phase{
-    height: 326px;
-    width: 244px;
-    position: absolute;
+    position: relative;
+    margin-top: 10px;
     .phase-icon{
         border-radius:30px;
         width: 66px;

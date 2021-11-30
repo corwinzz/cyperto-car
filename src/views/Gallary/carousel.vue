@@ -1,15 +1,15 @@
 <template lang='pug'>
 div
+    btn(@click.native='toList' class='btn_tolist')
     .carousel
         .cardmini(v-for="itm,idx in cards")
-            cardetailMini(:carInf="itm")
-    btn(@click.native='toList' class='btn_tolist')
+            cardetailMi(:carInf="itm")
 </template>
 
 <script>
 import btn from '../../components/BtnStart/Btn.vue'
-// import { crsls } from './carlist'
-import cardetailMini from './cardetailMini.vue'
+import { crsls } from './carlist'
+import cardetailMi from './cardetailMi.vue'
 import { mapActions, mapState } from 'vuex'
 
 let tabCols = {
@@ -19,7 +19,7 @@ let tabCols = {
 
 export default {
     name: 'carousel',
-    components: { cardetailMini, btn },
+    components: { cardetailMi, btn },
     data() {
         return {
             cards: []
@@ -40,7 +40,8 @@ export default {
     },
     async mounted() {
         console.log('carousel')
-        this.cards = await this.getCarsByOwner()
+        this.cards = crsls
+        // this.cards = await this.getCarsByOwner()
     },
     methods: {
       ...mapActions(['getCarsByOwner']),
@@ -54,8 +55,8 @@ export default {
 <style lang="less" scoped>
 .btn_tolist{
     position: absolute;
-    left: 80px;
-    top: 160px;
+    left: 30px;
+    top: 20px;
     height: 40px;
     width: 140px;
     border-radius: 20px;
@@ -74,17 +75,17 @@ export default {
     }
 }
 .carousel{
-    width: calc(100% - 80px);
-    height: calc(100% - 240px);
+    width: calc(100% - 30px);
+    height: calc(100% - 90px);
     display: flex;
     flex-direction: column;
     position:absolute;
-    top: 240px;
-    left: 80px;
+    top: 70px;
+    left: 30px;
     overflow: auto;
     .cardmini{
-        height: 270px;
-        width: 1255px;
+        height: 625px;
+        width: 315px;
         border-bottom:1px solid rgba(255,255,255,0.2);
         margin-bottom: 40px;
     }
