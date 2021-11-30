@@ -94,6 +94,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['connectWallet', 'disconnectWallet', 'checkChain']),
         firstSwitch(isplaymusic) {
             let t = this
             this.isFisrtStartMusic = false
@@ -126,9 +127,14 @@ export default {
             t.audio.addEventListener('canplay', t.musicLoaded())
             document.removeEventListener('click', t.firstClick)
         },
-        ...mapActions(['connectWallet', 'disconnectWallet']),
-        linkTo(page) {
-            this.$router.push(page)
+        async linkTo(page) {
+          if (page === 'carousel') {
+              if (!await this.checkChain()) {
+                  this.isWallet = true
+                  return
+              }
+          }
+          this.$router.push(page)
         },
         showWallet() {
             this.isWallet = true

@@ -46,6 +46,17 @@ const actions = {
     }
     return true
   },
+  async checkChain({ state }) {
+    if (!state.chainId) {
+      return false
+    } else if (state.chainId !== '0x13881' &&
+      state.chainId !== '0x89' &&
+      state.chainId !== 80001 &&
+      state.chainId !== 137) {
+      return false
+    }
+    return true
+  },
   async disconnectWallet ({ state }) {
     if (
       state.provider &&

@@ -9,6 +9,7 @@
 import cardcar from './cardcar.vue'
 // import { allcar } from './carlist'
 import { mapActions, mapState } from 'vuex'
+import { carTypes } from '../../plugins/static'
 export default {
     name: 'gallary',
     props: {
@@ -23,11 +24,14 @@ export default {
         }
     },
     async mounted() {
-        // this.cards = allcar
-        this.cards = await this.getMintSupply()
+        if (await this.checkChain()) {
+            this.cards = await this.getMintSupply()
+        } else {
+            this.cards = carTypes
+        }
     },
     methods: {
-        ...mapActions(['getMintSupply'])
+        ...mapActions(['getMintSupply', 'checkChain'])
     },
     computed: {
         ...mapState(['account', 'carList'])

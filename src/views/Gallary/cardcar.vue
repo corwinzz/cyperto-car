@@ -12,10 +12,14 @@
     .cc_mint
         <svg-font fontName="icon-cards" class="svg_card" ></svg-font>
         .mint_t(@click='linkTo') Mint
+    wallet(v-show="isWallet" @onClose="isWallet=false")
 </template>
 
 <script>
 import threecard from '../../components/Three3D/ThreeCard.vue'
+import { mapActions } from 'vuex'
+import wallet from '../pop/wallet.vue'
+
 let tabCols = {
     NORMAL: 'green',
     RARE: 'red'
@@ -23,8 +27,10 @@ let tabCols = {
 
 export default {
     name: 'Home',
-    components: { threecard },
+    components: { threecard, wallet },
     props: {
+        // eslint-disable-next-line vue/require-prop-type-constructor
+        isWallet: false,
         carInf: {
             type: Object,
             default: () => {
@@ -56,18 +62,23 @@ export default {
 
     },
     methods: {
-        linkTo() {
-            this.$router.push({
-                name: 'cardetail',
-                query: {
-                    cid: this.carInf.cid,
-                    class: this.carInf.class,
-                    mode: this.carInf.mode,
-                    fee: this.carInf.fee,
-                    rest: this.carInf.rest,
-                    total: this.carInf.total
-                }
-            })
+        ...mapActions(['checkChain']),
+        async linkTo() {
+            if (await this.checkChain()) {
+                this.$router.push({
+                    name: 'cardetail',
+                    query: {
+                        cid: this.carInf.cid,
+                        class: this.carInf.class,
+                        mode: this.carInf.mode,
+                        fee: this.carInf.fee,
+                        rest: this.carInf.rest,
+                        total: this.carInf.total
+                    }
+                })
+            } else {
+                this.isWallet = true
+            }
         }
     }
 }

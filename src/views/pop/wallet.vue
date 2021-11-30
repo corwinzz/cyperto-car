@@ -33,6 +33,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .wallet{
+    z-index: 10;
     position:absolute;
     top:calc(50% - 240px) ;
     left:calc(50% - 360px);
