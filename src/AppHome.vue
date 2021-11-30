@@ -74,7 +74,7 @@ export default {
     position:absolute;
     width: 248px;
     height: 144px;
-    left: 1152px;
+    right: 60px;
     top: 44px;
 }
 .svg_video{

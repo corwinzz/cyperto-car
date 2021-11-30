@@ -1,5 +1,5 @@
 <template lang='pug'>
-div(id="app")
+.app
     .main
         keep-alive
             transition(name="fade")
@@ -21,14 +21,16 @@ div(id="app")
                     btnStart(txt="Back to Home" bkCol='#5D5FEF')
     //- wallet(v-show="route=='gallary' && isWallet" @onClose="isWallet=false")
     .videoIcon(@click="switchMusic")
-        img(v-if='isMuiscPlay' src='/img/sr_audio_1.gif' width='24' height='24')
-        svg-font(v-else fontName="sraudio" class="svg_slide_audio")
+        img(v-if='isMuiscPlay' src='/img/sr_audio_1.gif' width='24' height='24' )
+        svg-font(v-else fontName="sraudio" class="svg_slide_audio" )
     Audio(muted autoplay controls="controls" loop="loop" preload="auto" width="420" ref="backgroundmuisc" hidden)
     wallet(v-show="isGallary && isWallet" @onClose="isWallet=false")
     Title(v-show="isGallary && getIsTitle")
+    startMusicCard(v-show='isFisrtStartMusic' @switch='firstSwitch')
 </template>
 
 <script>
+import startMusicCard from './views/pop/startMusicCard.vue'
 import wallet from './views/pop/wallet.vue'
 import Title from './views/pop/Title.vue'
 import btnStart from './components/BtnStart/btnstart.vue'
@@ -38,7 +40,7 @@ import { connectors } from './connectors'
 export default {
     name: 'App',
     components: {
-        btnStart, wallet, Title
+        btnStart, wallet, Title, startMusicCard
     },
     data() {
         return {
@@ -50,11 +52,12 @@ export default {
                 txt: 'Back to Home'
             }],
             isMuiscPlay: false,
-            src: './music/平凡之路.mp3',
+            src: './music/TheExtremeSport.mp3',
             audio: undefined,
             isInteractived: false,
             isScrolling: false,
-            routelink: ['Home', 'garage', 'story', 'roadmap', 'partners', 'gallary']
+            routelink: ['Home', 'garage', 'story', 'roadmap', 'partners', 'gallary'],
+            isFisrtStartMusic: true
         }
     },
     async mounted() {
@@ -91,6 +94,13 @@ export default {
         }
     },
     methods: {
+        firstSwitch(isplaymusic) {
+            let t = this
+            this.isFisrtStartMusic = false
+            this.isMuiscPlay = !isplaymusic
+            this.switchMusic()
+            document.removeEventListener('click', t.firstClick)
+        },
         handleScroll(e) {
             let direction = e.deltaY > 0 ? 'down' : 'up'
             if (this.isScrolling) return
@@ -114,7 +124,7 @@ export default {
             let t = this
             t.isInteractived = true
             t.audio.addEventListener('canplay', t.musicLoaded())
-            // document.removeEventListener('click', t.firstClick)
+            document.removeEventListener('click', t.firstClick)
         },
         ...mapActions(['connectWallet', 'disconnectWallet']),
         linkTo(page) {
@@ -155,11 +165,13 @@ export default {
     width: 24px;
     color: white;
 }
-#app{
+.app{
     position: relative;
     margin: 0 auto;
-    width: 1440px;
-    height: 768px;
+    width: 100%;
+    height: 100%;
+    min-width: 1440px;
+    min-height: 768px;
     background: black;
     font-family: DMSans_R;
     header{
@@ -178,6 +190,7 @@ export default {
             display: flex;
             .routermain{
                 margin-left:20px;
+                text-align: center;
             }
         }
     }
@@ -190,9 +203,9 @@ export default {
         position: absolute;
         width: 24px;
         height: 24px;
-        top:624px;
+        bottom:150px;
         right: 60px;
-        // border: 1px solid red;
+        z-index: 999;
     }
 }
 .fade-enter-active, .fade-leave-avtive {

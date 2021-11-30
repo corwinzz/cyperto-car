@@ -1,9 +1,11 @@
 <template lang='pug'>
-.story
-    .blurWindow(v-show='wind==1' @click='wind=2' ref='blurWindow')
+.story(ref='story')
+    .blurWindow(v-show='wind==1'  ref='blurWindow')
         .title INTRODUCTION
         .txt Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track.
         .line
+        .routermain(style="width:173px" @click='wind=2')
+            btnStart(txt="View The Details" bkCol='#EA3344')
     .blurWindow(v-show="wind==2" class="page2"  @click='wind=1')
         .inner
             .avater
@@ -13,14 +15,16 @@
             .line
             .nam Linh Nguyen
             .foot Founder at CyberCar
+            .btn_close Close
 </template>
 
 <script>
+import btnStart from '../../components/BtnStart/btnstart.vue'
 import hypelink from '../hypelink.vue'
 export default {
     name: 'story',
     components: {
-        hypelink
+        hypelink, btnStart
     },
     data() {
         return {
@@ -29,9 +33,13 @@ export default {
         }
     },
     mounted() {
+        this.toggle()
     },
     methods: {
-
+        toggle() {
+            let dom = this.$refs.story
+            dom.classList.toggle('anm_bk_show', true)
+        }
     },
     computed: {
         pageInf() {
@@ -54,12 +62,14 @@ export default {
                 let dom = this.$refs.blurWindow
                 dom.classList.toggle('anm_hide', false)
                 dom.classList.toggle('anm_show', true)
+                this.toggle()
             }
         }
     }
 }
 </script>
 <style lang="less" scoped>
+@import url('../../common/style/common.less');
 .anm_hide{
     animation: anm1 500ms reverse;
 }
@@ -107,10 +117,10 @@ export default {
     }
 }
 .story{
-    height: 768px;
-    width: 1440px;
+    height: 100%;
+    width: 100%;
     background: url('/img/b_story1.png') no-repeat center fixed;
-    background-size:100% 100%;
+    background-size:100% 110%;
 }
 .blurWindow{
     z-index: 2;
@@ -123,7 +133,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 460px;
-    height: 190px;
+    height: 252px;
     padding: 20px;
     .title{
         height: 48px;
@@ -142,20 +152,22 @@ export default {
     }
     .line{
         margin-top:20px ;
+        margin-left: 0px;
         width:50px ;
         height: 0px;
+        text-align: left;
         border-top:1px solid #EA3344;
     }
 }
 .blurWindow.page2{
     width: 1110px;
     height: 467px;
-    left: 165px;
+    left: calc(50% - 555px);
     top: 200px;
     .inner{
-        height: 353px;
-        width: 730px;
-        margin: 55px auto;
+        height: 467px;
+        width: 750px;
+        margin: 20px auto;
         display: flex;
         flex-direction: column;
         .avater{
@@ -197,11 +209,22 @@ export default {
             font-weight: 400;
             letter-spacing: -0.3px;
         }
+        .btn_close{
+            width: 230px;
+            height: 40px;
+            line-height: 40px;
+            .f_d();
+            font-size: 14px;
+            border-radius: 20px;
+            border: 2px solid #777E90;
+            text-align: center;
+            margin: 15px auto;
+        }
     }
 }
 .blurWindow::before {
     background: url('/img/b_story1.png') no-repeat center fixed;
-    background-size:100% 100%;
+    background-size:100% 110%;
     content: '';
     display: block;
     position: absolute;

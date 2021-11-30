@@ -37,7 +37,7 @@ export default {
 <style lang="less" scoped>
 .Title{
     position:absolute;
-    top:230px ;
+    top:calc(50% - 150px) ;
     left: calc(50% - 530px/2);
     width: 530px;
     height: 297px;

@@ -24,46 +24,32 @@ export default {
         }
     },
     mounted() {
+        this.toggle()
     },
     methods: {
-
+        toggle() {
+            let dom = this.$refs.partners
+            dom.classList.toggle('anm_bk_show', true)
+        }
     },
     watch: {
         $route(to, from) {
             if (to.name === 'partners') {
-                let dom = this.$refs.partners
-                dom.classList.toggle('anm_show', true)
+                this.toggle()
             }
         }
     }
 }
 </script>
 <style lang="less" scoped>
-.anm_show{
-    animation: anm 500ms ;
-}
-@keyframes anm {
-    0% {
-        background-position-y:-200px;
-        opacity: 0;
-    }
-    80% {
-        background-position-y:50%;
-        opacity: 1;
-    }
-    100% {
-        background-position-y:50%;
-        opacity: 1;
-    }
-}
 .whitepng{
     filter: brightness(0) invert(1);
     margin: auto;
 
 }
 .partners{
-    height: 768px;
-    width: 1440px;
+    height: 100%;
+    width: 100%;
     background: url('/img/b_partners1.png') no-repeat center fixed;
     background-size:100% 100%;
     .partners_marks{

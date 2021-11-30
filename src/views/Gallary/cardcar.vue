@@ -3,7 +3,7 @@
     .area3D
         threecard(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="264" :hei="310")
     .cc_row1
-        .cc_nam {{carInf.name}}
+        .cc_nam {{carInf.nam}}
         .cc_state(:style="ccstate") {{carInf.state}}
     .divide
     .cc_row2
@@ -37,7 +37,8 @@ export default {
                     fee: '2.00 ETH',
                     rest: 1,
                     total: 2000,
-                    modelUrl: ''
+                    modelUrl: '',
+                    preloadImg: ''
                 }
             }
         }
@@ -109,7 +110,7 @@ export default {
             font-size: 12px;
             font-weight: 700px;
             font-family: DM Snas;
-            border:3px solid red;
+            border:1px solid red;
             padding-bottom:22px;
             padding-left:5px ;
             padding-right: 5px;

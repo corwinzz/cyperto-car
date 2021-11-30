@@ -1,3 +1,5 @@
+@import url('./animpage.css');
+@import url('./load.css');
 .fadeout{
     animation: fadeout 300ms;
 }
@@ -21,3 +23,51 @@
         opacity: 1;
     }
 }
+/* partners */
+.anm_bk_show{
+    animation: anm 500ms ;
+}
+@keyframes anm {
+    0% {
+        background-position-y:-200px;
+        opacity: 0;
+    }
+    80% {
+        background-position-y:50%;
+        opacity: 1;
+    }
+    100% {
+        background-position-y:50%;
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

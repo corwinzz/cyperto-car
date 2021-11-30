@@ -1,7 +1,8 @@
 export var crsls = [{
     cid: 0,
+    preloadImg: '/img/car.png',
     modelUrl: '/Lamborghini/gltf/high/black.glb',
-    state: 'NORMAL',
+    state: 'RARE',
     nam: 'Lamborghini',
     kvs: [{ lab: 'Acceleration', val: '3.5 ETH' },
         { lab: 'Speed', val: '3.5 ETH' },

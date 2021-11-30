@@ -1,7 +1,7 @@
 <template lang='pug'>
 .pageSlid
     .pageslider
-        .page_indicate(:style="{top:pag*40+'px'}")
+        .page_indicate(:style="{top:pagNo*40+'px'}" ref='pageIndicate' :class="[`page${pagNo}`]")
     svg-font(fontName="scroll" class="svg_slide")
 </template>
 
@@ -15,9 +15,22 @@ export default {
             require: true
         }
     },
+    watch: {
+        pag() {
+            // this.$refs.pageIndicate.classList.add(`page${this.pag}`, false)
+        }
+    },
+    computed: {
+        route() {
+            return this.$route.name
+        },
+        pagNo() {
+            return this.pagenam.indexOf(this.route)
+        }
+    },
     data() {
         return {
-
+            pagenam: ['Home', 'garage', 'story', 'roadmap', 'partners']
         }
     },
     mounted() {

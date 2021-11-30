@@ -8,14 +8,17 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" type="text/css" href="./css/animation.css">
     <link rel="stylesheet" type="text/css" href="./fontDMSans/DMSans.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <style>
       body{
+        padding: 0px;
           background: black;
           display: flex;
           flex-direction: column;
           align-content: center;
           justify-content: space-around;
           height: 100%;
+          width: 100%;
           font-family: DMSans_R;
       }
       .icon {
@@ -30,6 +33,26 @@
         height: 20px;
         width: 1440px;
       }
+      #allow_curise{
+        pointer-events: none;
+        z-index: 9999;
+    position: fixed;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid rgba(255, 255, 255, 0.75) ;
+}
+#allow_curise::before{
+    content: '';
+    position:absolute;
+    width: 10px;
+    height: 10px;
+    left: 14px;
+    top: 14px;
+    background-color: white;
+    border-radius: 5px;
+
+}
     </style>
     <!-- <script src="./font/iconfont.js"></script> -->
   </head>
@@ -39,6 +62,19 @@
     </noscript>
    
     <div id="app"></div>
-
+    <div id="allow_curise"></div>
   </body>
+  <script>
+    $(document).ready(function(){
+        $("body").mousemove(function(event){
+            var evt = event || body.t.event;
+            var x= event.pageX;
+            var y= event.pageY;
+            setTimeout(()=>{
+                $("#allow_curise").css({"left":(x-20)+"px","top":(y-20)+"px"})
+            },100)
+            
+        })    
+    })
+    </script>
 </html>
