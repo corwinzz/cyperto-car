@@ -34,7 +34,7 @@ import startMusicCard from './views/pop/startMusicCard.vue'
 import wallet from './views/pop/wallet.vue'
 import Title from './views/pop/Title.vue'
 import btnStart from './components/BtnStart/btnstart.vue'
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import { connectors } from './connectors'
 
 export default {
@@ -78,7 +78,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('animpage', ['getIsTitle']),
+        ...mapGetters('animpage', ['getIsTitle', 'getPageNo']),
         ...mapState(['account']),
         route() {
             return this.$route.name
@@ -94,6 +94,9 @@ export default {
         }
     },
     methods: {
+        ...mapMutations('animpage', {
+            setPageNo: 'setPageNo'
+        }),
         firstSwitch(isplaymusic) {
             let t = this
             this.isFisrtStartMusic = false
@@ -104,21 +107,30 @@ export default {
         handleScroll(e) {
             let direction = e.deltaY > 0 ? 'down' : 'up'
             if (this.isScrolling) return
-            let routeIdx = this.routelink.indexOf(this.route)
-            if (routeIdx > -1 && routeIdx < this.routelink.length - 1) {
-                if (direction === 'down') {
-                    this.$router.push({ name: this.routelink[routeIdx + 1] })
-                    this.isScrolling = true
-                } else { // 向上或前
-                    if (routeIdx > 0) {
-                        this.$router.push({ name: this.routelink[routeIdx - 1] })
-                        this.isScrolling = true
-                    }
+            this.isScrolling = true // 开始滚动事件
+            if (this.routelink.indexOf(this.route) < -1) return // Home页面才会跳转
+            if (direction === 'down') {
+                if (this.getPageNo === 0) {
+                    this.setPageNo(1) // Home页面内跳转
+                } else if (this.getPageNo > 0 && this.getPageNo < 5) {
+                    this.$router.push({ name: this.routelink[this.getPageNo + 1] }) // 路由跳转
+                    this.setPageNo(this.getPageNo + 1)
+                }
+            } else { // 向上或前
+                if (this.getPageNo < 5 && this.getPageNo > 2) {
+                    this.$router.push({ name: this.routelink[this.getPageNo - 1] })
+                    this.setPageNo(this.getPageNo - 1)
+                } else if (this.getPageNo === 2) {
+                    this.$router.push({ name: this.routelink[0] })
+                    this.setPageNo(1) // Home页面内跳转
+                } else if (this.getPageNo === 1) {
+                    this.setPageNo(0) // Home页面内跳转
                 }
             }
-            if (routeIdx === 0) {
+            if (this.getPageNo < 2 || this.route === 'Home') { // Home两个页面无跳转
                 e.stopPropagation()
             }
+            setTimeout(() => { this.isScrolling = false }, 500)
         },
         firstClick() {
             let t = this
@@ -171,7 +183,7 @@ export default {
     width: 100%;
     height: 100%;
     min-width: 1440px;
-    min-height: 768px;
+    min-height: 680px;
     background: black;
     font-family: DMSans_R;
     header{

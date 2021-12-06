@@ -1,7 +1,7 @@
 <template lang='pug'>
 .appCards
     keep-alive
-        router-view
+        router-view(:key='key')
 </template>
 
 <script>
@@ -17,6 +17,11 @@ export default {
         }
     },
     mounted() {
+    },
+    computed: {
+        key() {
+            return this.$route.path + Date.now()
+        }
     },
     methods: {
         newPage(page) {

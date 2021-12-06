@@ -33,7 +33,7 @@ export default {
     watch: {
         pageInf: {
             handler(newval, oldval) {
-                if (newval.from === 'garage') {
+                if (newval.from === 'Home') {
                     let dom = this.$refs.garagecard
                     dom.classList.toggle('anm_show', false)
                     dom.classList.toggle('anm_hide', true)
@@ -42,7 +42,7 @@ export default {
             deep: true
         },
         $route(to, from) {
-            if (to.name === 'garage') {
+            if (to.name === 'Home') {
                 let dom = this.$refs.garagecard
                 dom.classList.toggle('anm_hide', false)
                 dom.classList.toggle('anm_show', true)

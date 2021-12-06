@@ -2,12 +2,12 @@
 
 .menu
     template(v-for='itm,idx in pages')
-        .menuTxt(@click="linkTo(itm,idx)" :style="itm.nam==route?isLine:''") {{itm.label}}
+        .menuTxt(@click="linkTo(itm,idx)" :style="getPageNo==idx?isLine:''") {{itm.label}}
 
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 export default {
     name: 'App',
     components: {},
@@ -17,7 +17,7 @@ export default {
             pages: [{
                 nam: 'Home', label: 'HOME'
             }, {
-                nam: 'garage', label: 'GARAGE'
+                nam: 'Home', label: 'GARAGE'
             }, {
                 nam: 'story', label: 'STORY'
             }, {
@@ -32,19 +32,26 @@ export default {
     },
     mounted() {
     },
+    watch: {
+        '$route' (to, from) {
+            console.log(to, from)
+        }
+    },
     computed: {
+        ...mapGetters('animpage', ['getPageNo']),
         route() {
             return this.$route.name
         }
     },
     methods: {
         ...mapMutations('animpage', {
-            setPageInf: 'setPageInf'
+            setPageInf: 'setPageInf',
+            setPageNo: 'setPageNo'
         }),
         linkTo(itm, idx) {
-            console.log(Date())
             this.setPageInf({ from: this.route, to: itm.nam })
-            this.$router.push(itm.nam)
+            this.setPageNo(idx)
+            this.$router.push({ name: itm.nam, params: { label: itm.label, id: idx } })
             this.$emit('newPage', idx)
         }
     }

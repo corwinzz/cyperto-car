@@ -1,16 +1,25 @@
 <template lang='pug'>
 .mainbackground
     ThreeCardBloom(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="1100" :hei="900")
-    homecard1
+    homecard1(v-show="getPageNo==0")
+    garagecard(v-show="getPageNo==1")
 </template>
 
 <script>
 import ThreeCardBloom from '@/components/Three3D/ThreeCardBloom'
 import homecard1 from './homeCard1.vue'
+import garagecard from '../Garage/garagecard.vue'
+import { mapGetters } from 'vuex'
 export default {
     name: 'Home',
     components: {
-        homecard1, ThreeCardBloom
+        homecard1, ThreeCardBloom, garagecard
+    },
+    computed: {
+        ...mapGetters('animpage', ['getPageNo']),
+        route() {
+            return this.$route.name
+        }
     },
     data() {
         return {
