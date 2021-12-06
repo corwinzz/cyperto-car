@@ -52,7 +52,7 @@ export default {
                 txt: 'Back to Home'
             }],
             isMuiscPlay: false,
-            src: '/music/TheExtremeSport.mp3',
+            src: './music/TheExtremeSport.mp3',
             audio: undefined,
             isInteractived: false,
             isScrolling: false,
@@ -79,7 +79,7 @@ export default {
     },
     computed: {
         ...mapGetters('animpage', ['getIsTitle', 'getPageNo']),
-        ...mapState(['account']),
+        ...mapState(['account', 'chainId']),
         route() {
             return this.$route.name
         },
@@ -97,6 +97,7 @@ export default {
         ...mapMutations('animpage', {
             setPageNo: 'setPageNo'
         }),
+        ...mapActions(['connectWallet', 'disconnectWallet', 'checkChain']),
         firstSwitch(isplaymusic) {
             let t = this
             this.isFisrtStartMusic = false
@@ -138,9 +139,14 @@ export default {
             t.audio.addEventListener('canplay', t.musicLoaded())
             document.removeEventListener('click', t.firstClick)
         },
-        ...mapActions(['connectWallet', 'disconnectWallet']),
-        linkTo(page) {
-            this.$router.push(page)
+        async linkTo(page) {
+          if (page === 'carousel') {
+              if (!await this.checkChain()) {
+                  this.isWallet = true
+                  return
+              }
+          }
+          this.$router.push(page)
         },
         showWallet() {
             this.isWallet = true

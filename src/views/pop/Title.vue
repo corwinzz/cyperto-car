@@ -36,6 +36,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .Title{
+    z-index: 11;
     position:absolute;
     top:calc(50% - 150px) ;
     left: calc(50% - 530px/2);

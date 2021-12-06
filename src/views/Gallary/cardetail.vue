@@ -74,12 +74,6 @@ export default {
         this.carInf.state = carTypes[this.cid].state
     },
     mounted() {
-        // this.cid = this.$route.params.cid
-        // console.log('cit' + this.cid)
-        // this.carInf.name = carTypes[this.cid].name
-        // this.carInf.other = carTypes[this.cid].description
-        // this.carInf.modelUrl = carTypes[this.cid].modelUrl
-        // this.carInf.state = carTypes[this.cid].state
     },
     methods: {
         ...mapActions(['mint', 'isMintable', 'isOnlyWhitelist', 'getWhitelist', 'checkBalance']),
@@ -93,8 +87,6 @@ export default {
         },
         async toMint() {
             const fee = this.$route.query.fee.split(' ')[0] // 1.6 ETH
-            console.log(this.$route.query)
-            console.log(this.$route.query.total)
             if (this.$route.query.rest === this.$route.query.total) {
                 this.setTitleInf({
                     title: 'Error',

@@ -5,6 +5,9 @@ export var carTypes = [{
   name: 'Aventador',
   zhName: '兰博基尼-Aventador',
   state: 'RARE',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'Aventador is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -14,6 +17,9 @@ export var carTypes = [{
   name: 'LaFerrari',
   zhName: '法拉利-LaFerrari',
   state: 'RARE',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'LaFerrari is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -23,6 +29,9 @@ export var carTypes = [{
   name: 'Veryon',
   zhName: '布加迪-威航',
   state: 'RARE',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'Veryon is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -32,6 +41,9 @@ export var carTypes = [{
   name: 'Agera',
   zhName: '科尼赛克-Agera',
   state: 'RARE',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'Agera is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -41,6 +53,9 @@ export var carTypes = [{
   name: 'AMG-GT',
   zhName: '奔驰AMG-GT',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'AMG-GT is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -50,6 +65,9 @@ export var carTypes = [{
   name: '911',
   zhName: '保时捷-911',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: '911 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -59,6 +77,9 @@ export var carTypes = [{
   name: 'R8',
   zhName: '奥迪R8',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'R8 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -68,6 +89,9 @@ export var carTypes = [{
   name: 'I8',
   zhName: '宝马i8',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'I8 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -77,6 +101,9 @@ export var carTypes = [{
   name: 'DB11',
   zhName: '阿斯顿马丁',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'DB11 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -86,6 +113,9 @@ export var carTypes = [{
   name: 'GTR',
   zhName: '日产GTR',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'GTR is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -95,6 +125,9 @@ export var carTypes = [{
   name: 'GTC',
   zhName: '玛莎拉蒂',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: 'GTC is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }, {
@@ -104,6 +137,9 @@ export var carTypes = [{
   name: '720S',
   zhName: '迈凯伦720S',
   state: 'NORMAL',
+  fee: 'N ETH',
+  rest: 'N',
+  total: 'N',
   description: '720S is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
   modelUrl: '/Lamborghini/gltf/high/black.glb'
 }]

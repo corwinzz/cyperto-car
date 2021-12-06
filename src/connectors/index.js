@@ -4,7 +4,7 @@ export const connectors = [
   {
     id: 0,
     name: 'MetaMask',
-    logo: '/img/fox.png',
+    logo: './img/fox.png',
     connect: async () => {
       if (window.ethereum) {
         await window.ethereum.request({
@@ -19,7 +19,7 @@ export const connectors = [
   {
     id: 1,
     name: 'WalletConnect',
-    logo: '/img/wallconnect.png',
+    logo: './img/wallconnect.png',
     isInstalled: () => true,
     connect: async () => {
       try {

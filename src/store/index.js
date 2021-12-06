@@ -23,6 +23,7 @@ const actions = {
   async connectWallet({ state, commit }, connector) {
     if (connector && connector.isInstalled()) {
       state.provider = await connector.connect()
+      state.chainId = state.provider.chainId
       if (state.provider) {
         state.web3 = new Web3(state.provider)
         state.cyberCar = new state.web3.eth.Contract(CyberCarABI, cyberCarContractAddr)
@@ -41,6 +42,17 @@ const actions = {
       localStorage.setItem('connector', connector.id)
       state.provider.on('disconnect', () => this.dispatch('handleDisconnect'))
     } else {
+      return false
+    }
+    return true
+  },
+  async checkChain({ state }) {
+    if (!state.chainId) {
+      return false
+    } else if (state.chainId !== '0x13881' &&
+      state.chainId !== '0x89' &&
+      state.chainId !== 80001 &&
+      state.chainId !== 137) {
       return false
     }
     return true
@@ -66,7 +78,6 @@ const actions = {
   async checkBalance({ state }, amount) {
     const balance = await state.web3.eth.getBalance(state.account)
     const amountWei = new BigNumber(state.web3.utils.toWei(amount))
-    console.log(new BigNumber(balance).comparedTo(amountWei) === -1)
     if (new BigNumber(balance).comparedTo(amountWei) === -1) {
       return false
     }
@@ -138,7 +149,6 @@ const actions = {
    * - the caller must pay for mint.
    */
   async mint({ state }, params) {
-    console.log(params)
     // eslint-disable-next-line new-cap
     const _value = state.web3.utils.toWei(String(params.value), 'ether')
     const gasPrice = await state.web3.eth.getGasPrice()
@@ -162,10 +172,6 @@ const actions = {
     for (let i = 0; i < carIds.length; i++) {
       const car = await state.cyberCar.methods.getCar(carIds[i]).call()
       for (let n = 0; n < carTypes.length; n++) {
-        console.log(carTypes[n].class)
-        console.log(carTypes[n].mode)
-        console.log(car.class)
-        console.log(car.mode)
         if (parseInt(car.class) === carTypes[n].class && parseInt(car.mode) === carTypes[n].mode) {
           const carObj = {
             cid: carIds[i],
