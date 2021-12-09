@@ -174,6 +174,7 @@ export default Vue.extend({
             mDom.appendChild(t.renderer.domElement)
             t.addBloomPass()
             t.controls = new OrbitControls(t.camera, t.renderer.domElement)
+            t.controls.enableZoom = false
             t.controls.dampingFactor = 0.25
             t.controls.minDistance = 0.001
             t.controls.maxDistance = 10000
