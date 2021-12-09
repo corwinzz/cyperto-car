@@ -102,11 +102,10 @@ export default Vue.extend({
             }
         },
         tweenCB() {
-            console.log(this.camera.position)
+            // console.log(this.camera.position)
         },
         onResize() {
             if (this.renderer && this.camera) {
-                console.log(this.hei, this.wid)
                 this.camera.aspect = this.wid / this.hei
                 this.camera.updateProjectionMatrix()
                 this.renderer.setSize(this.wid, this.hei)
@@ -115,7 +114,6 @@ export default Vue.extend({
         addModels() {
             let t = this
             if (t.modelUrl === '') return
-            console.log(this.modelUrl)
             t.gp_obj.children = []
             const dracoLoader = new DRACOLoader()
             dracoLoader.setDecoderPath(conf.path_draco)

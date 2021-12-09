@@ -20,7 +20,6 @@ export default {
             handler(newVal, oldVal) {
                 this.wid = newVal.wid
                 this.hei = newVal.hei
-                console.log(this.wid, this.hei)
             },
             deep: true,
             immediate: true

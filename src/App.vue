@@ -75,7 +75,7 @@ export default {
     watch: {
         route: {
             handler() {
-                this.isScrolling = false
+                // this.isScrolling = false
             }
         }
     },
@@ -117,9 +117,14 @@ export default {
                 e.stopPropagation()
                 e.preventDefault()
             }
-            let direction = e.deltaY > 0 ? 'down' : 'up'
-            if (this.isScrolling) return
+            if (this.isScrolling) {
+                e.stopPropagation()
+                e.preventDefault()
+                return
+            }
+            console.log('scroll', e)
             this.isScrolling = true // 开始滚动事件
+            let direction = e.deltaY > 0 ? 'down' : 'up'
             if (this.routelink.indexOf(this.route) < -1) return // Home页面才会跳转
             if (direction === 'down') {
                 if (this.getPageNo === 0) {
@@ -139,7 +144,7 @@ export default {
                     this.setPageNo(0) // Home页面内跳转
                 }
             }
-            setTimeout(() => { this.isScrolling = false }, 500)
+            setTimeout(() => { this.isScrolling = false }, 2000)
         },
         firstClick() {
             let t = this
