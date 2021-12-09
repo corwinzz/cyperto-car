@@ -153,16 +153,16 @@ export default {
             // document.removeEventListener('click', t.firstClick)
         },
         async linkTo(page) {
-          if (page === 'carousel') {
-              if (!await this.checkChain()) {
-                  this.isWallet = true
-                  return
-              }
-          }
-          this.$router.push(page)
-          if (page === 'Home') {
-              this.setPageNo(0)
-          }
+            if (page === 'carousel') {
+                if (!await this.checkChain()) {
+                    this.isWallet = true
+                    return
+                }
+            }
+            this.$router.push(page)
+            if (page === 'Home') {
+                this.setPageNo(0)
+            }
         },
         showWallet() {
             this.isWallet = true
