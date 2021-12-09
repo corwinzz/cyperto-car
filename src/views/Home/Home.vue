@@ -1,6 +1,6 @@
 <template lang='pug'>
 .mainbackground
-    ThreeCardBloom(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="1100" :hei="900")
+    ThreeCardBloom(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="wid" :hei="hei")
     homecard1(v-show="getPageNo==0")
     garagecard(v-show="getPageNo==1")
 </template>
@@ -15,8 +15,19 @@ export default {
     components: {
         homecard1, ThreeCardBloom, garagecard
     },
+    watch: {
+        getWndSize: {
+            handler(newVal, oldVal) {
+                this.wid = newVal.wid
+                this.hei = newVal.hei
+                console.log(this.wid, this.hei)
+            },
+            deep: true,
+            immediate: true
+        }
+    },
     computed: {
-        ...mapGetters('animpage', ['getPageNo']),
+        ...mapGetters('animpage', ['getPageNo', 'getWndSize']),
         route() {
             return this.$route.name
         }
@@ -27,7 +38,9 @@ export default {
                 modelUrl: '/Lamborghini/home/scene.gltf',
                 // modelUrl: '/Lamborghini/gltf/high/black.glb',
                 cid: 999
-            }
+            },
+            wid: 900,
+            hei: 640
         }
     }
 }

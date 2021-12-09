@@ -65,8 +65,10 @@ export default {
         t.$nextTick(() => {
             t.audio = t.$refs.backgroundmuisc
             t.audio.setAttribute('src', t.src)
-            document.addEventListener('click', t.firstClick, false)
+            // document.addEventListener('click', t.firstClick, false)
             document.addEventListener('mousewheel', t.handleScroll, true)
+            window.addEventListener('resize', t.onResize, true)
+            t.onResize()
         })
         await this.connectWallet(this.connectors[localStorage.getItem('connector')])
     },
@@ -95,17 +97,26 @@ export default {
     },
     methods: {
         ...mapMutations('animpage', {
-            setPageNo: 'setPageNo'
+            setPageNo: 'setPageNo',
+            setWndSize: 'setWndSize'
         }),
         ...mapActions(['connectWallet', 'disconnectWallet', 'checkChain']),
+        onResize() {
+            let wid = document.body.clientWidth
+            let hei = document.body.clientHeight
+            this.setWndSize({ wid, hei })
+        },
         firstSwitch(isplaymusic) {
-            let t = this
             this.isFisrtStartMusic = false
             this.isMuiscPlay = !isplaymusic
             this.switchMusic()
-            document.removeEventListener('click', t.firstClick)
+            // document.removeEventListener('click', this.firstClick)
         },
         handleScroll(e) {
+            if (this.getPageNo < 2 || this.route === 'Home') { // Home两个页面无跳转
+                e.stopPropagation()
+                e.preventDefault()
+            }
             let direction = e.deltaY > 0 ? 'down' : 'up'
             if (this.isScrolling) return
             this.isScrolling = true // 开始滚动事件
@@ -128,16 +139,13 @@ export default {
                     this.setPageNo(0) // Home页面内跳转
                 }
             }
-            if (this.getPageNo < 2 || this.route === 'Home') { // Home两个页面无跳转
-                e.stopPropagation()
-            }
             setTimeout(() => { this.isScrolling = false }, 500)
         },
         firstClick() {
             let t = this
             t.isInteractived = true
             t.audio.addEventListener('canplay', t.musicLoaded())
-            document.removeEventListener('click', t.firstClick)
+            // document.removeEventListener('click', t.firstClick)
         },
         async linkTo(page) {
           if (page === 'carousel') {
@@ -147,6 +155,9 @@ export default {
               }
           }
           this.$router.push(page)
+          if (page === 'Home') {
+              this.setPageNo(0)
+          }
         },
         showWallet() {
             this.isWallet = true

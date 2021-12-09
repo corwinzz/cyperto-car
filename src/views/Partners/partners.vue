@@ -42,10 +42,9 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.whitepng{
+.whitepng{//图片
     filter: brightness(0) invert(1);
     margin: auto;
-
 }
 .partners{
     height: 100%;
@@ -54,8 +53,8 @@ export default {
     background-size:100% 100%;
     .partners_marks{
         position:absolute;
-        top: 252px;
-        left: 140px;
+        top: calc(50% - 130px);
+        left: calc(50% - 580px);
         width: 1160px;
         height: 268px;
         display: flex;

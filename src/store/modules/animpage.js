@@ -8,7 +8,11 @@ const state = {
         title: 'Title',
         content: 'Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track. Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track.'
     },
-    pageNo: 0
+    pageNo: 0,
+    WndSize: {
+        hei: 640,
+        wid: 1100
+    }
 }
 
 const getters = {
@@ -23,6 +27,9 @@ const getters = {
     },
     getPageNo: state => {
         return state.pageNo
+    },
+    getWndSize: state => {
+        return state.WndSize
     }
 }
 
@@ -41,6 +48,9 @@ const mutations = {
     },
     setPageNo(state, value) {
         state.pageNo = value
+    },
+    setWndSize(state, value) {
+        state.WndSize = value
     }
 }
 
