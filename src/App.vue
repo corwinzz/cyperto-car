@@ -124,7 +124,7 @@ export default {
             if (direction === 'down') {
                 if (this.getPageNo === 0) {
                     this.setPageNo(1) // Home页面内跳转
-                } else if (this.getPageNo > 0 && this.getPageNo < 5) {
+                } else if (this.getPageNo > 0 && this.getPageNo < 4) {
                     this.$router.push({ name: this.routelink[this.getPageNo + 1] }) // 路由跳转
                     this.setPageNo(this.getPageNo + 1)
                 }

@@ -1,7 +1,7 @@
 <template lang='pug'>
 .pageSlid
     .pageslider
-        .page_indicate(:style="{top:getPageNo*40+'px'}" ref='pageIndicate' :class="[`page${getPageNo}`]")
+        .page_indicate(:style="{top:getPageNo*50+'px'}" ref='pageIndicate' :class="[`page${getPageNo}`]")
     svg-font(fontName="scroll" class="svg_slide")
 </template>
 
@@ -56,14 +56,14 @@ export default {
     height:480px ;
     .pageslider{
         width: 0px;
-        height: 260px;
+        height: 250px;
         border-left: 3px solid rgba(255, 255, 255, 0.2);
         margin-left: 10px;
         .page_indicate{
             position: relative;
             left: -3px;
             width: 4px;
-            height: 40px;
+            height: 50px;
             background-color: white;
         }
     }

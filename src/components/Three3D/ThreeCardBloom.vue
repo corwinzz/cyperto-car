@@ -69,6 +69,9 @@ export default Vue.extend({
     },
     methods: {
         onTween() {
+            if (!this.camera) return
+            this.controls.enableRotate = this.getPageNo === 1
+            this.controls.enablePan = this.getPageNo === 1
             if (this.getPageNo === 1 || this.getPageNo === 0) {
                 let t = this
                 let pose1 = {
@@ -78,8 +81,8 @@ export default Vue.extend({
                 }
                 let pose2 = {
                     x1: 0,
-                    y1: 4,
-                    z1: 4
+                    y1: 2.5,
+                    z1: 8
                 }
                 let tw
                 if (this.getPageNo === 1) {
@@ -175,6 +178,8 @@ export default Vue.extend({
             t.addBloomPass()
             t.controls = new OrbitControls(t.camera, t.renderer.domElement)
             t.controls.enableZoom = false
+            t.controls.enablePan = false
+            t.controls.enableRotate = false
             t.controls.dampingFactor = 0.25
             t.controls.minDistance = 0.001
             t.controls.maxDistance = 10000
