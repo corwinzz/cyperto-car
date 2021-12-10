@@ -57,7 +57,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['account']),
+        ...mapState(['account', 'connector']),
         ccstate() {
             let col = tabCols[this.carInf.state]
             return {
@@ -124,7 +124,14 @@ export default {
                 _class: this.$route.query.class,
                 _mode: this.$route.query.mode
             }
+            if (this.connector.name === 'MetaMask') {
+                this.setTitleInf({
+                    title: 'Pending...',
+                    content: ''
+                })
+            }
             await this.mint(params)
+            // console.log('tx->' + result)
             this.setTitleInf({
                 title: 'Success',
                 content: 'Mint successful!'
