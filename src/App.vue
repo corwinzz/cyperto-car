@@ -34,7 +34,7 @@ import startMusicCard from './views/pop/startMusicCard.vue'
 import wallet from './views/pop/wallet.vue'
 import Title from './views/pop/Title.vue'
 import btnStart from './components/BtnStart/btnstart.vue'
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import { connectors } from './connectors'
 
 export default {
@@ -65,20 +65,22 @@ export default {
         t.$nextTick(() => {
             t.audio = t.$refs.backgroundmuisc
             t.audio.setAttribute('src', t.src)
-            document.addEventListener('click', t.firstClick, false)
+            // document.addEventListener('click', t.firstClick, false)
             document.addEventListener('mousewheel', t.handleScroll, true)
+            window.addEventListener('resize', t.onResize, true)
+            t.onResize()
         })
         await this.connectWallet(this.connectors[localStorage.getItem('connector')])
     },
     watch: {
         route: {
             handler() {
-                this.isScrolling = false
+                // this.isScrolling = false
             }
         }
     },
     computed: {
-        ...mapGetters('animpage', ['getIsTitle']),
+        ...mapGetters('animpage', ['getIsTitle', 'getPageNo']),
         ...mapState(['account', 'chainId']),
         route() {
             return this.$route.name
@@ -94,47 +96,73 @@ export default {
         }
     },
     methods: {
+        ...mapMutations('animpage', {
+            setPageNo: 'setPageNo',
+            setWndSize: 'setWndSize'
+        }),
         ...mapActions(['connectWallet', 'disconnectWallet', 'checkChain']),
+        onResize() {
+            let wid = document.body.clientWidth
+            let hei = document.body.clientHeight
+            this.setWndSize({ wid, hei })
+        },
         firstSwitch(isplaymusic) {
-            let t = this
             this.isFisrtStartMusic = false
             this.isMuiscPlay = !isplaymusic
             this.switchMusic()
-            document.removeEventListener('click', t.firstClick)
+            // document.removeEventListener('click', this.firstClick)
         },
         handleScroll(e) {
+            if (this.getPageNo < 2 || this.route === 'Home') { // Home两个页面无跳转
+                e.stopPropagation()
+                e.preventDefault()
+            }
+            if (this.isScrolling) {
+                e.stopPropagation()
+                e.preventDefault()
+                return
+            }
+            console.log('scroll', e)
+            this.isScrolling = true // 开始滚动事件
             let direction = e.deltaY > 0 ? 'down' : 'up'
-            if (this.isScrolling) return
-            let routeIdx = this.routelink.indexOf(this.route)
-            if (routeIdx > -1 && routeIdx < this.routelink.length - 1) {
-                if (direction === 'down') {
-                    this.$router.push({ name: this.routelink[routeIdx + 1] })
-                    this.isScrolling = true
-                } else { // 向上或前
-                    if (routeIdx > 0) {
-                        this.$router.push({ name: this.routelink[routeIdx - 1] })
-                        this.isScrolling = true
-                    }
+            if (this.routelink.indexOf(this.route) < -1) return // Home页面才会跳转
+            if (direction === 'down') {
+                if (this.getPageNo === 0) {
+                    this.setPageNo(1) // Home页面内跳转
+                } else if (this.getPageNo > 0 && this.getPageNo < 4) {
+                    this.$router.push({ name: this.routelink[this.getPageNo + 1] }) // 路由跳转
+                    this.setPageNo(this.getPageNo + 1)
+                }
+            } else { // 向上或前
+                if (this.getPageNo < 5 && this.getPageNo > 2) {
+                    this.$router.push({ name: this.routelink[this.getPageNo - 1] })
+                    this.setPageNo(this.getPageNo - 1)
+                } else if (this.getPageNo === 2) {
+                    this.$router.push({ name: this.routelink[0] })
+                    this.setPageNo(1) // Home页面内跳转
+                } else if (this.getPageNo === 1) {
+                    this.setPageNo(0) // Home页面内跳转
                 }
             }
-            if (routeIdx === 0) {
-                e.stopPropagation()
-            }
+            setTimeout(() => { this.isScrolling = false }, 2000)
         },
         firstClick() {
             let t = this
             t.isInteractived = true
             t.audio.addEventListener('canplay', t.musicLoaded())
-            document.removeEventListener('click', t.firstClick)
+            // document.removeEventListener('click', t.firstClick)
         },
         async linkTo(page) {
-          if (page === 'carousel') {
-              if (!await this.checkChain()) {
-                  this.isWallet = true
-                  return
-              }
-          }
-          this.$router.push(page)
+            if (page === 'carousel') {
+                if (!await this.checkChain()) {
+                    this.isWallet = true
+                    return
+                }
+            }
+            this.$router.push(page)
+            if (page === 'Home') {
+                this.setPageNo(0)
+            }
         },
         showWallet() {
             this.isWallet = true
@@ -177,7 +205,7 @@ export default {
     width: 100%;
     height: 100%;
     min-width: 1440px;
-    min-height: 768px;
+    min-height: 680px;
     background: black;
     font-family: DMSans_R;
     header{

@@ -1,31 +1,30 @@
 <template lang='pug'>
 .pageSlid
     .pageslider
-        .page_indicate(:style="{top:pagNo*40+'px'}" ref='pageIndicate' :class="[`page${pagNo}`]")
+        .page_indicate(:style="{top:getPageNo*50+'px'}" ref='pageIndicate' :class="[`page${getPageNo}`]")
     svg-font(fontName="scroll" class="svg_slide")
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: 'pageslider',
     components: {},
-    props: {
-        pag: {
-            type: Number,
-            require: true
-        }
-    },
-    watch: {
-        pag() {
-            // this.$refs.pageIndicate.classList.add(`page${this.pag}`, false)
-        }
-    },
     computed: {
+        ...mapGetters('animpage', ['getPageNo']),
         route() {
             return this.$route.name
         },
         pagNo() {
-            return this.pagenam.indexOf(this.route)
+            let idx = 0
+            if (this.route === 'Home') {
+                if (this.$route.params.label && this.$route.params.label === 'GARAGE') {
+                    idx = 1
+                }
+            } else {
+                idx = this.pagenam.indexOf(this.route)
+            }
+            return idx
         }
     },
     data() {
@@ -57,14 +56,14 @@ export default {
     height:480px ;
     .pageslider{
         width: 0px;
-        height: 260px;
+        height: 250px;
         border-left: 3px solid rgba(255, 255, 255, 0.2);
         margin-left: 10px;
         .page_indicate{
             position: relative;
             left: -3px;
             width: 4px;
-            height: 40px;
+            height: 50px;
             background-color: white;
         }
     }

@@ -4,6 +4,8 @@
 </template>
 
 <script >
+import tween from '@tweenjs/tween.js'
+import { mapGetters } from 'vuex'
 import { isGLTF1 } from './util'
 import Vue from 'vue'
 import * as THREE from 'three/build/three.module.js'
@@ -20,7 +22,7 @@ export default Vue.extend({
     props: {
         modelUrl: { type: String, default: '' },
         cid: { type: Number, default: 0 },
-        hei: { type: Number, default: 0 },
+        hei: { type: Number },
         wid: { type: Number }
     },
     data() {
@@ -29,7 +31,19 @@ export default Vue.extend({
         }
     },
     watch: {
-        modelUrl: function() { this.addModels() }
+        hei() {
+            this.onResize()
+        },
+        wid() {
+            this.onResize()
+        },
+        modelUrl: function() { this.addModels() },
+        getPageNo: function() {
+            this.onTween()
+        }
+    },
+    computed: {
+        ...mapGetters('animpage', ['getPageNo'])
     },
     created() {
         let t = this
@@ -41,9 +55,6 @@ export default Vue.extend({
         t.raycaster = new Raycaster()
         t.mouse = new Vector2()
         t.clock = new THREE.Clock()
-        // t.renderScene
-        // t.bloomPass
-        // t.composer
         t.bloom = {
             exposure: 1,
             bloomStrength: 1.5,
@@ -57,10 +68,52 @@ export default Vue.extend({
         t.addModels()
     },
     methods: {
+        onTween() {
+            if (!this.camera) return
+            this.controls.enableRotate = this.getPageNo === 1
+            this.controls.enablePan = this.getPageNo === 1
+            if (this.getPageNo === 1 || this.getPageNo === 0) {
+                let t = this
+                let pose1 = {
+                    x1: 2.5,
+                    y1: 2.5,
+                    z1: 6.5
+                }
+                let pose2 = {
+                    x1: 0,
+                    y1: 2.5,
+                    z1: 8
+                }
+                let tw
+                if (this.getPageNo === 1) {
+                    tw = new tween.Tween(pose1).to(pose2, 3000)
+                } else {
+                    tw = new tween.Tween(pose2).to(pose1, 3000)
+                }
+                tw.onUpdate((obj) => {
+                    t.camera.position.set(obj.x1, obj.y1, obj.z1)
+                })
+                tw.onComplete(() => {
+                    t.controls.enabled = true
+                    t.tweenCB()
+                })
+                tw.easing(tween.Easing.Cubic.InOut)
+                tw.start()
+            }
+        },
+        tweenCB() {
+            // console.log(this.camera.position)
+        },
+        onResize() {
+            if (this.renderer && this.camera) {
+                this.camera.aspect = this.wid / this.hei
+                this.camera.updateProjectionMatrix()
+                this.renderer.setSize(this.wid, this.hei)
+            }
+        },
         addModels() {
             let t = this
             if (t.modelUrl === '') return
-            console.log(this.modelUrl)
             t.gp_obj.children = []
             const dracoLoader = new DRACOLoader()
             dracoLoader.setDecoderPath(conf.path_draco)
@@ -122,6 +175,9 @@ export default Vue.extend({
             mDom.appendChild(t.renderer.domElement)
             t.addBloomPass()
             t.controls = new OrbitControls(t.camera, t.renderer.domElement)
+            t.controls.enableZoom = false
+            t.controls.enablePan = false
+            t.controls.enableRotate = false
             t.controls.dampingFactor = 0.25
             t.controls.minDistance = 0.001
             t.controls.maxDistance = 10000
@@ -177,6 +233,7 @@ export default Vue.extend({
             if (t.mixer) {
                 t.mixer.update(delta)
             }
+            tween.update()
             t.composer.render()
             // t.renderer.render(t.scene, t.camera)
         }

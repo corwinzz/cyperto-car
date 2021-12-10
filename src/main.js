@@ -8,7 +8,7 @@ import './common/style/common.less'
 import 'reset-css'
 import AsyncComputed from 'vue-async-computed'
 import './components/svg/SvgIcon/' // svgIcon 图标
-import './components/svg/SvgFont/' // svgIcon 图标
+import './components/svg/SvgFont/index' // svgIcon 图标
 Vue.config.productionTip = false
 Vue.use(ViewUI)
 Vue.use(AsyncComputed)

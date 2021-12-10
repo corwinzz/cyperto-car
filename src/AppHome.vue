@@ -5,9 +5,9 @@
     .svgVideo(v-show="route=='Home'")
         svg-font(fontName="VideoFill" class="svg_video" @click.native='toVideo')
         svg-font(fontName="VideoPlay" class="svg_videoplay" @click.native='toVideo')
-    pageSlider(:pag='curpag')
+    pageSlider
     footer
-        .foot_card( ref='footCard' @click='toHome2' v-show="route=='Home'")
+        .foot_card( ref='footCard' @click='toHome2' v-show="route=='Home' && getPageNo==0")
             .slidcards
                 img( src='/img/home_1.png' width='312' height='166' )
                 .dots
@@ -25,6 +25,7 @@
 import pageSlider from './views/pageSlider.vue'
 import menumap from './views/menumap.vue'
 import hypelink from './views/hypelink.vue'
+import { mapGetters } from 'vuex'
 export default {
     name: 'apphome',
     components: {
@@ -37,7 +38,13 @@ export default {
     },
     mounted() {
     },
+    watch: {
+        getPageNo(pageNo) {
+            this.switchPage(pageNo)
+        }
+    },
     computed: {
+        ...mapGetters('animpage', ['getPageNo']),
         route() {
             return this.$route.name
         }
@@ -51,20 +58,16 @@ export default {
         },
         switchPage(page, nam) {
             let dom = this.$refs.footCard
-
             if (page === 0) {
                 dom.setAttribute('style', 'display:show')
-                dom.classList.toggle('fadeout', false)
                 dom.classList.toggle('fadein', true)
                 dom.style.display = 'show'
             } else {
                 dom.classList.toggle('fadeout', true)
-                dom.classList.toggle('fadein', false)
                 setTimeout(() => {
                     dom.style.display = 'none'
-                }, 280)
+                }, 500)
             }
-            this.curpag = page
         }
     }
 }
@@ -152,7 +155,7 @@ export default {
     }
 }
 .fadeout{
-    animation: fadeout 300ms;
+    animation: fadeout 500ms;
 }
 @keyframes fadeout {
     0% {width:566px ;
