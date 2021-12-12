@@ -81,8 +81,8 @@ export default Vue.extend({
                 }
                 let pose2 = {
                     x1: 0,
-                    y1: 2.5,
-                    z1: 8
+                    y1: 2.2,
+                    z1: 7.5
                 }
                 let tw
                 if (this.getPageNo === 1) {

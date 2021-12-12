@@ -15,13 +15,13 @@ export default {
     data() {
         return {
             paras: [{
-                lab: 'Acceleration', val: '234'
+                lab: 'Acceleration', val: '???'
             }, {
-                lab: 'Speed', val: '249 KM/H'
+                lab: 'Speed', val: '???'
             }, {
-                lab: 'Control', val: 'SSS'
+                lab: 'Control', val: '???'
             }, {
-                lab: 'Range', val: '430km'
+                lab: 'Range', val: '???'
             }]
         }
     },
