@@ -17,11 +17,13 @@ const state = {
   provider: null,
   signer: null,
   chainId: null,
+  connector: null,
   carList: []
 }
 const actions = {
   async connectWallet({ state, commit }, connector) {
     if (connector && connector.isInstalled()) {
+      state.connector = connector
       state.provider = await connector.connect()
       state.chainId = state.provider.chainId
       if (state.provider) {
