@@ -19,6 +19,10 @@ const routes = [{
     name: 'home3',
     component: () => import('../views/Home/home3.vue')
 }, {
+    path: '/gallaryH5',
+    name: 'gallaryH5',
+    component: () => import('../views/GallaryH5/gallaryH5.vue')
+}, {
     path: '/AppHome',
     name: 'AppHome',
     component: () => import('../AppHome.vue'),

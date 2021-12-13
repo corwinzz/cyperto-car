@@ -12,7 +12,8 @@ const state = {
     WndSize: {
         hei: 640,
         wid: 1100
-    }
+    },
+    isH5: false
 }
 
 const getters = {
@@ -30,6 +31,9 @@ const getters = {
     },
     getWndSize: state => {
         return state.WndSize
+    },
+    getH5: state => {
+        return state.isH5
     }
 }
 
@@ -51,6 +55,9 @@ const mutations = {
     },
     setWndSize(state, value) {
         state.WndSize = value
+    },
+    setH5(state, value) {
+        state.isH5 = value
     }
 }
 
