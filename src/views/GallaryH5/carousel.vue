@@ -39,9 +39,9 @@ export default {
         }
     },
     async mounted() {
-        // this.cards = await this.getCarsByOwner()
+        this.cards = await this.getCarsByOwner()
         console.log(crsls)
-        this.cards = crsls
+        // this.cards = crsls
     },
     methods: {
       ...mapActions(['getCarsByOwner']),

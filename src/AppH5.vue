@@ -5,13 +5,17 @@
         .routermain(style="width:158px" @click="linkTo('gallaryH5')")
             btnStart(txt="Start Game_" bkCol='#EA3344' :wid="128" )
     .header1(v-show="isGallary")
-        .routermain(@click="showWallet()")
+        .routermain(@click="showWallet()" v-if="!account")
             btnStart(txt="Connect" bkCol='#EA3344')
+        .routermain(@click="showWallet()" v-if="account")
+            btnStart(:txt="account.substring(0, 10) + '...'" bkCol='#EA3344')
         .routermain(@click="linkTo('Home')")
             btnStart(txt="Back to Home" bkCol='#5D5FEF')
     .header2(v-show='isMini')
-        .routermain(style="width:100px" @click="showWallet()")
-            btnStart(:txt="'...'" bkCol='#EA3344' :wid='100')
+        .routermain(style="width:100px" @click="showWallet()" v-if="!account")
+            btnStart(txt="Connect" bkCol='#EA3344' :wid='100')
+        .routermain(style="width:100px" @click="showWallet()" v-if="account")
+            btnStart(:txt="account.substring(0, 10) + '...'" bkCol='#EA3344' :wid='100')
         .routermain(style="width:100px" @click="linkTo('carousel')" )
             btnStart(txt="My Car" bkCol='#EF925D' :wid='100')
         .routermain(style="width:100px" @click="linkTo('Home')")
@@ -26,7 +30,8 @@
 import walletH5 from './views/pop/walletH5.vue'
 import TitleH5 from './views/pop/TitleH5.vue'
 import btnStart from './components/BtnStart/btnstartH5.vue'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters, mapActions, mapState } from 'vuex'
+import { connectors } from './connectors'
 export default {
     name: 'appH5',
     components: {
@@ -34,15 +39,18 @@ export default {
     },
     data() {
         return {
+            connectors,
             isWallet: false
         }
     },
-    mounted() {
+    async mounted() {
+        await this.connectWallet(this.connectors[localStorage.getItem('connector')])
     },
     created() {
         this.setH5(true)
     },
     computed: {
+        ...mapState(['account', 'chainId']),
         ...mapGetters('animpage', ['getIsTitle']),
         route() {
             return this.$route.name
@@ -58,6 +66,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['connectWallet']),
         ...mapMutations('animpage', {
             setH5: 'setH5'
         }),
