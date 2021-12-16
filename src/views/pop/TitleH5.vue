@@ -37,7 +37,7 @@ export default {
 <style lang="less" scoped>
 @import url('../../common/style/common.less');
 .Title{
-    position:absolute;
+    position:fixed;
     top:calc(50% - 160px) ;
     left: calc(50% - 160px);
     width: 315px;

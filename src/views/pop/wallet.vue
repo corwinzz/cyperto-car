@@ -34,7 +34,7 @@ export default {
 <style lang="less" scoped>
 .wallet{
     z-index: 10;
-    position:absolute;
+    position:fixed;
     top:calc(50% - 240px) ;
     left:calc(50% - 360px);
     width: 720px;
