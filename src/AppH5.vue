@@ -23,7 +23,7 @@
     keep-alive
         router-view
     walletH5(v-show="isGallary && isWallet" @onClose="isWallet=false")
-    TitleH5(v-show="isGallary && getIsTitle")
+    TitleH5(v-show="isMini && getIsTitle")
 </template>
 
 <script>
