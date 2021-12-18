@@ -136,11 +136,11 @@ export default {
 <style lang="less" scoped>
 @import url('../../common/style/common.less');
 .cardetailH5{
+    position:absolute;
     width: calc(100% - 10px);
     height: calc(100% - 90px);
     top: 90px;
     left: 0px;
-    position:absolute;
     background: url('/img/b_gallary.png') no-repeat center fixed;
     background-size: 100% 120%;
 }
@@ -170,7 +170,7 @@ export default {
     position: absolute;
     top:90px ;
     left: 20px;
-    height: calc(100% - 180px);
+    height: calc(100% - 90px);
     width: 315px;
     .cdd_car{
         width: 100%;
