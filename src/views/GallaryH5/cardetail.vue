@@ -142,7 +142,7 @@ export default {
     left: 0px;
     position:absolute;
     background: url('/img/b_gallary.png') no-repeat center fixed;
-    background-size: 100% 100%;
+    background-size: 100% 120%;
 }
 .btn_tolist{
     position: absolute;
