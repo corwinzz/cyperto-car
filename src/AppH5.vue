@@ -109,6 +109,6 @@ export default {
     background:none;
 }
 .header2{
-    padding: 0px 5px;
+    padding: 0px 20px;
 }
 </style>
