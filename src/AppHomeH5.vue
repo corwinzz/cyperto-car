@@ -1,5 +1,5 @@
 <template lang='pug'>
-.appH5
+.appHomeH5
     HomeH5
     template(v-for="itm,idx in backimgs")
         .bkimg(:style="imgStyle(itm)")
@@ -14,7 +14,7 @@
 import hypelinkH5 from './views/hypelinkH5.vue'
 import HomeH5 from './views/Home/HomeH5.vue'
 export default {
-    name: 'appH5',
+    name: 'appHomeH5',
     components: {
         HomeH5, hypelinkH5
     },
@@ -60,7 +60,7 @@ export default {
 </script>
 <style lang="less" scoped>
 @import url('./common/style/common.less');
-.appH5{
+.appHomeH5{
     width: 100%;
     background-color: #000;
 }

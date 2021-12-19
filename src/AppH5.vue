@@ -84,6 +84,7 @@ export default {
 .appH5{
     width: 100%;
     height: 100%;
+    overflow: auto;
     background-color: rgba(0, 0, 0, 1);
 }
 .header,.header1,.header2{

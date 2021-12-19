@@ -24,7 +24,7 @@ let tabCols = {
 }
 
 export default {
-    name: 'cardetail',
+    name: 'cardetailH5',
     components: { threecard, btnStart, btn },
     props: {
         carInf: {
@@ -143,6 +143,7 @@ export default {
     left: 0px;
     background: url('/img/b_gallary.png') no-repeat center fixed;
     background-size: 100% 120%;
+    overflow: auto;
 }
 .btn_tolist{
     position: absolute;

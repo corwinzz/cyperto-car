@@ -61,8 +61,7 @@ export default {
     position:absolute;
     background: url('/img/b_gallary.png') no-repeat center fixed;
     background-size: 100% 100%;
-    display: flex;
-    flex-direction: column;
+    overflow: auto;
 }
 .btn_tolist{
     position: absolute;
@@ -87,7 +86,8 @@ export default {
 }
 .carousel{
     width: calc(100% - 30px);
-    height: calc(100% - 90px);
+    height: 100%;
+    min-height: 670px;
     display: flex;
     flex-direction: column;
     position:absolute;
