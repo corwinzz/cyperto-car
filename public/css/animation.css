@@ -1,5 +1,6 @@
 @import url('./animpage.css');
 @import url('./load.css');
+@import url('./animate.min.css');
 .fadeout{
     animation: fadeout 300ms;
 }

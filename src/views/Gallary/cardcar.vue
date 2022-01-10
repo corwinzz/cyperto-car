@@ -1,7 +1,7 @@
 <template lang='pug'>
 .cardcar
     .area3D
-        threecard(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="264" :hei="310")
+        threecard(:modelUrl="carInf.modelUrl+'black.glb'" :cid="carInf.cid" :wid="264" :hei="310")
     .cc_row1
         .cc_nam {{carInf.name}}
         .cc_state(:style="ccstate") {{carInf.state}}

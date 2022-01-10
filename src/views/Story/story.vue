@@ -33,13 +33,10 @@ export default {
         }
     },
     mounted() {
-        this.toggle()
+
     },
     methods: {
-        toggle() {
-            let dom = this.$refs.story
-            dom.classList.toggle('anm_bk_show', true)
-        }
+
     },
     computed: {
         pageInf() {
@@ -51,7 +48,6 @@ export default {
             handler(newval, oldval) {
                 if (newval.from === 'story') {
                     let dom = this.$refs.blurWindow
-                    dom.classList.toggle('anm_show', false)
                     dom.classList.toggle('anm_hide', true)
                 }
             },
@@ -60,9 +56,7 @@ export default {
         $route(to, from) {
             if (to.name === 'story') {
                 let dom = this.$refs.blurWindow
-                dom.classList.toggle('anm_hide', false)
                 dom.classList.toggle('anm_show', true)
-                this.toggle()
             }
         }
     }
@@ -71,32 +65,12 @@ export default {
 <style lang="less" scoped>
 @import url('../../common/style/common.less');
 .anm_hide{
-    animation: anm1 500ms reverse;
+    animation: anm 500ms reverse;
 }
 .anm_show{
     animation: anm 300ms ;
 }
 @keyframes anm {
-    0% {
-        left: 180px;
-        width: 320px;
-        top: 240px;
-        opacity: 0;
-    }
-    80% {
-        left: 80px;
-        width: 460px;
-        top:320px;
-        opacity: 1;
-    }
-    100% {
-        left: 80px;
-        width: 460px;
-        top:320px;
-        opacity: 1;
-    }
-}
-@keyframes anm1 {
     0% {
         left: 180px;
         width: 320px;

@@ -24,7 +24,7 @@ export default {
         }
     },
     mounted() {
-        this.toggle()
+        // this.toggle()
     },
     methods: {
         toggle() {
@@ -35,7 +35,7 @@ export default {
     watch: {
         $route(to, from) {
             if (to.name === 'partners') {
-                this.toggle()
+                // this.toggle()
             }
         }
     }

@@ -58,29 +58,12 @@ export default {
 </script>
 <style lang="less" scoped>
 .anm_hide{
-    animation: anm1 500ms reverse;
+    animation: anm 500ms ease-out reverse;
 }
 .anm_show{
-    animation: anm 300ms;
+    animation: anm 300ms ease-in;
 }
 @keyframes anm {
-    0% {
-        left: 285px;
-        width: 540px ;
-        opacity: 0;
-    }
-    80% {
-        left:185px ;
-        width: 321px;
-        opacity: 1;
-    }
-    100% {
-        left:185px ;
-        width: 321px;
-        opacity: 1;
-    }
-}
-@keyframes anm1 {
     0% {
         left: 285px;
         width: 540px ;

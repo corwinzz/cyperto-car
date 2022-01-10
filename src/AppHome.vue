@@ -7,7 +7,7 @@
         svg-font(fontName="VideoPlay" class="svg_videoplay" @click.native='toVideo')
     pageSlider
     footer
-        .foot_card( ref='footCard' @click='toHome2' v-show="route=='Home' && getPageNo==0")
+        .foot_card(ref='footCard' @click='toHome2' :style="footcardStyle()")
             .slidcards
                 img( src='/img/home_1.png' width='312' height='166' )
                 .dots
@@ -50,6 +50,14 @@ export default {
         }
     },
     methods: {
+        footcardStyle() {
+            console.log(this.route === 'Home' && this.getPageNo === 0)
+            if (this.route === 'Home' && this.getPageNo === 0) {
+                return { width: '566px' }
+            } else {
+                return { width: '0px' }
+            }
+        },
         toHome2() {
             this.$router.push('/home2')
         },
@@ -57,17 +65,7 @@ export default {
             this.$router.push('/home3')
         },
         switchPage(page, nam) {
-            let dom = this.$refs.footCard
-            if (page === 0) {
-                dom.setAttribute('style', 'display:show')
-                dom.classList.toggle('fadein', true)
-                dom.style.display = 'show'
-            } else {
-                dom.classList.toggle('fadeout', true)
-                setTimeout(() => {
-                    dom.style.display = 'none'
-                }, 500)
-            }
+
         }
     }
 }
@@ -92,22 +90,6 @@ export default {
     left: 104px;
     color: white;
 }
-
-.dots{
-    position:absolute;
-    left: 140px;
-    bottom: 20px;
-    height: 10px;
-    width: 40px;
-    display: flex;
-    justify-content: space-between;
-    .dot{
-        width: 8px;
-        height: 8px;
-        border: 1px solid yellow;
-        border-radius: 4px;
-    }
-}
 .apphome{
     margin: auto;
     width: 100%;
@@ -124,9 +106,26 @@ export default {
             width: 566px;
             display: flex;
             overflow: hidden;
+            transition: width 600ms ease;
             .slidcards{
                 width: 312px;
                 height: 166px;
+                position:relative;
+                .dots{
+                    position:absolute;
+                    left: 140px;
+                    bottom: 20px;
+                    height: 10px;
+                    width: 40px;
+                    display: flex;
+                    justify-content: space-between;
+                    .dot{
+                        width: 8px;
+                        height: 8px;
+                        border: 1px solid yellow;
+                        border-radius: 4px;
+                    }
+                }
             }
             .cardinfo{
                 width: 250px;
@@ -154,27 +153,5 @@ export default {
         }
     }
 }
-.fadeout{
-    animation: fadeout 500ms;
-}
-@keyframes fadeout {
-    0% {width:566px ;
-    opacity: 1;}
-    100% {width: 0px;
-    opacity: 0;}
-}
-.fadein{
-    animation: fadein 500ms;
-}
-@keyframes fadein {
-    0% {
-        width: 0px;
-        opacity: 0;
-    }
-    100% {
-        display: show;
-        width:566px ;
-        opacity: 1;
-    }
-}
+
 </style>

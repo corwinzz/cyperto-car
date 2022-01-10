@@ -1,8 +1,9 @@
 <template lang='pug'>
 .mainbackground
     ThreeCardBloom(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="wid" :hei="hei")
-    homecard1(v-show="getPageNo==0")
-    garagecard(v-show="getPageNo==1")
+    transition(name='transitcard' mode='out-in')
+        homecard1(v-if="getPageNo==0")
+        garagecard(v-if="getPageNo==1")
 </template>
 
 <script>
@@ -49,5 +50,14 @@ export default {
 .mainbackground{
     width: 100%;
     height: 100%;
+}
+.transitcard-enter-active,
+.transitcard-leave-active{
+    transition: all 400ms ease;
+}
+.transitcard-leave-to,
+.transitcard-enter{
+    opacity: 0;
+    transform: translateX(50px);
 }
 </style>

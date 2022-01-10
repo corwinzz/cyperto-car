@@ -9,7 +9,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'Aventador is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/LamborghiniGai/'
 }, {
   cid: 1,
   class: 0,
@@ -21,7 +21,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'LaFerrari is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/Ferrair/'
 }, {
   cid: 2,
   class: 0,
@@ -33,7 +33,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'Veryon is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/Bugatti/'
 }, {
   cid: 3,
   class: 0,
@@ -45,7 +45,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'Agera is one of cybercar\'s high-performance creation racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/AGERA/'
 }, {
   cid: 4,
   class: 1,
@@ -57,7 +57,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'AMG-GT is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/GT50/'
 }, {
   cid: 5,
   class: 1,
@@ -69,7 +69,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: '911 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/Porsche/'
 }, {
   cid: 6,
   class: 1,
@@ -81,7 +81,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'R8 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/AudiR8/'
 }, {
   cid: 7,
   class: 1,
@@ -93,7 +93,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'I8 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/BMWi8/'
 }, {
   cid: 8,
   class: 1,
@@ -105,7 +105,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'DB11 is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/AstonMartin/'
 }, {
   cid: 9,
   class: 1,
@@ -117,7 +117,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'GTR is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/MaseratieGranCabrio/'
 }, {
   cid: 10,
   class: 1,
@@ -129,7 +129,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: 'GTC is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/MaseratieGranCabrio/'
 }, {
   cid: 11,
   class: 1,
@@ -141,7 +141,7 @@ export var carTypes = [{
   rest: 'N',
   total: 'N',
   description: '720S is one of cybercar\'s founding racing cars and a status symbol of cybercar meta-universe.',
-  modelUrl: '/Lamborghini/gltf/high/black.glb'
+  modelUrl: '/cars/Mclance/'
 }]
 
 export var colors = ['black', 'white', 'red', 'blue', 'green', 'purple', 'orange', 'rainbow']

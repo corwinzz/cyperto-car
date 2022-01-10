@@ -65,7 +65,7 @@ export default {
         }
     },
     mounted() {
-        this.toggle()
+        // this.toggle()
     },
     methods: {
         toggle() {
@@ -76,7 +76,7 @@ export default {
     watch: {
         $route(to, from) {
             if (to.name === 'roadmap') {
-                this.toggle()
+                // this.toggle()
             }
         }
     }

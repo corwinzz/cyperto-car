@@ -74,6 +74,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     setTimeout(() => {
         next() // 所有路由延迟600ms添加动画
-    }, 600)
+    }, 0)
 })
 export default router

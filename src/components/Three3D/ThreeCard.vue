@@ -110,9 +110,9 @@ export default Vue.extend({
             const mDom = t.$refs[`card_viw_3d_${t.cid}`]
             t.scene = new THREE.Scene()
             t.camera = new THREE.PerspectiveCamera(45, t.wid / t.hei, 0.01, 100000)
-            t.camera.position.set(800, 800, 800)
+            t.camera.position.set(1000, 1000, 1000)
             t.renderer = new THREE.WebGLRenderer({ antialias: true })
-            t.renderer.setClearColor(0x2d2d2d, 1.0)
+            t.renderer.setClearColor(0x777777, 1.0)
             t.renderer.setSize(t.wid, t.hei)
             mDom.appendChild(t.renderer.domElement)
 

@@ -1,9 +1,8 @@
 <template lang='pug'>
 .app
     .main
-        keep-alive
-            transition(name="fade")
-                router-view(:isWallet='isWallet')
+        transition(:name="transitnam" mode="out-in")
+            router-view(:isWallet='isWallet' :key='$route.fullPath')
     header
         img.mark(src='img/logo.gif' width='223' height='30' style="margin-left:80px;margin-top:34px")
         .btns
@@ -19,7 +18,6 @@
                     btnStart(txt="My Car" bkCol='#EF925D')
                 .routermain(style="width:173px" @click="linkTo('Home')" v-show='isGallary')
                     btnStart(txt="Back to Home" bkCol='#5D5FEF')
-    //- wallet(v-show="route=='gallary' && isWallet" @onClose="isWallet=false")
     .videoIcon(@click="switchMusic")
         img(v-if='isMuiscPlay' src='/img/sr_audio_1.gif' width='24' height='24' )
         svg-font(v-else fontName="sraudio" class="svg_slide_audio" )
@@ -57,7 +55,8 @@ export default {
             isInteractived: false,
             isScrolling: false,
             routelink: ['Home', 'garage', 'story', 'roadmap', 'partners', 'gallary'],
-            isFisrtStartMusic: true
+            isFisrtStartMusic: true,
+            transitnam: 'up'
         }
     },
     async mounted() {
@@ -73,10 +72,10 @@ export default {
         await this.connectWallet(this.connectors[localStorage.getItem('connector')])
     },
     watch: {
-        route: {
-            handler() {
-                // this.isScrolling = false
-            }
+        '$route'(to, from) {
+            let fromId = this.routelink.indexOf(from.name)
+            let toId = this.routelink.indexOf(to.name)
+            this.transitnam = fromId > toId ? 'up' : 'down'
         }
     },
     computed: {
@@ -122,10 +121,9 @@ export default {
                 e.preventDefault()
                 return
             }
-            console.log('scroll', e)
             this.isScrolling = true // 开始滚动事件
             let direction = e.deltaY > 0 ? 'down' : 'up'
-            if (this.routelink.indexOf(this.route) < -1) return // Home页面才会跳转
+            if (this.routelink.indexOf(this.route) < -1 || this.routelink.indexOf(this.route) > 4) return // Home页面才会跳转
             if (direction === 'down') {
                 if (this.getPageNo === 0) {
                     this.setPageNo(1) // Home页面内跳转
@@ -208,6 +206,7 @@ export default {
     min-height: 680px;
     background: black;
     font-family: DMSans_R;
+
     header{
         z-index: 99;
         position: absolute;
@@ -232,6 +231,7 @@ export default {
         margin: auto;
         width: 100%;
         height: 100%;
+        overflow: hidden;
     }
     .videoIcon{
         position: absolute;
@@ -242,10 +242,22 @@ export default {
         z-index: 999;
     }
 }
-.fade-enter-active, .fade-leave-avtive {
-    transition: opacity 3s
+.up-enter-active,
+.down-enter-active {
+    transition: all 600ms ease-out
 }
-.fade-enter, .fade-leave-to {
-    opacity: 0
+.up-leave-active,
+.down-leave-active{
+    transition: all 600ms ease-in
+}
+.up-leave-to,
+.down-enter {
+    opacity: 0;
+    transform: translateY(-5%);
+}
+.up-enter,
+.down-leave-to {
+    opacity: 0;
+    transform: translateY(5%);
 }
 </style>
