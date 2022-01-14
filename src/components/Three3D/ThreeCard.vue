@@ -1,7 +1,9 @@
 <template lang='pug'>
-.threecard(:ref="`threecard_${cid}`" @mouseenter="onMouseEnter")
+.threecard(:ref="`threecard_${cid}`" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave")
     .card_viw_3d(:ref="`card_viw_3d_${cid}`" v-show="isLoaded" ref='threecardview')
-    img.preloadimage(:width="wid" :height='hei' :src='preloadImg' v-show="!isLoaded" ref='threecardimg' :class="[isLoaded?'loaded':'']")
+    transition(name="anload" mode="out-in")
+        img.preloadimage(:width="wid" :height='hei' :src='preloadImg' v-if="!isLoaded" ref='threecardimg')
+    VueElementLoading(:active="isLoading" spinner="ring" background-color='rgba(255, 255, 255, .5)')
 </template>
 
 <script >
@@ -12,9 +14,12 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { Group, Raycaster, Vector2 } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-
+import VueElementLoading from 'vue-element-loading'
 let conf = { path_draco: '/lib/draco/gltf/' }
 export default Vue.extend({
+    components: {
+        VueElementLoading
+    },
     props: {
         preloadImg: {
             type: String,
@@ -28,7 +33,8 @@ export default Vue.extend({
     data() {
         return {
             isLoaded: false,
-            isLoading: false
+            isLoading: false,
+            isImage: true
         }
     },
     watch: {
@@ -45,16 +51,30 @@ export default Vue.extend({
         t.gp_obj = new Group()
         t.raycaster = new Raycaster()
         t.mouse = new Vector2()
+        t.frameId = null
     },
     mounted() {
     },
     methods: {
+        onMouseLeave() {
+             this.isImage = true
+            if (this.frameId !== null) {
+                cancelAnimationFrame(this.frameId)
+                this.frameId = null
+            }
+        },
         onMouseEnter() {
+            this.isImage = false
             if (!this.isLoaded && !this.isLoading) {
                 if (this.scene === null) {
                     this.init()
                 }
                 this.addModels()
+            }
+            if (this.isLoaded) {
+                if (this.frameId === null) {
+                    this.animate()
+                }
             }
         },
         addModels() {
@@ -149,7 +169,7 @@ export default Vue.extend({
             let t = this
             t.controls.update()
             t.render()
-            requestAnimationFrame(t.animate)
+            t.frameId = requestAnimationFrame(t.animate)
         },
         render() {
             let t = this
@@ -164,6 +184,7 @@ export default Vue.extend({
     position: relative;
     height: 100%;
     width: 100%;
+    overflow: hidden;
     .card_viw_3d{
         height: 100%;
         width: 100%;
@@ -175,5 +196,15 @@ export default Vue.extend({
     left: 0px;
     width: 100%;
     height: 100%;
+}
+.anload-enter-active{
+    transition: all 600ms ease-out
+}
+.anload-leave-active{
+    transition: all 600ms ease-in
+}
+.anload-leave-to,
+.anload-enter {
+    transform: translateY(100%);
 }
 </style>

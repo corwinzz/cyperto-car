@@ -9,7 +9,7 @@
             img(class='whitepng' src='/img/slack.png' width='240' height='64' alt="filter applied")
             img(class='whitepng' src='/img/slack.png' width='240' height='64' alt="filter applied")
             img(class='whitepng' src='/img/Google.png' width='240' height='64' alt="filter applied")
-    .partners_footer Quo animi eligendi nisi eligendi. Qui quia excepturi vitae.
+        .partners_footer Quo animi eligendi nisi eligendi. Qui quia excepturi vitae.
 </template>
 
 <script>
@@ -56,15 +56,15 @@ export default {
         top: calc(50% - 130px);
         left: calc(50% - 580px);
         width: 1160px;
-        height: 268px;
+        height: 320px;
         display: flex;
         flex-direction: column;
-        padding: 40px;
         justify-content: space-between;
         .marks_row{
             width: 1080px;
             height: 64px;
             display: flex;
+            margin:20px auto;
             .mark{
                 width: 240px;
                 height: 62px;
@@ -72,19 +72,18 @@ export default {
                 border: 1px solid red;
             }
         }
+        .partners_footer{
+            width: 100%;
+            text-align: center;
+            color: white;
+            height: 46px;
+            line-height: 46px;
+            font-size: 30px;
+            letter-spacing: -1.6px;
+            font-weight: bold;
+            font: DMSans_R;
+        }
     }
-    .partners_footer{
-        position:absolute;
-        top: 550px;
-        width: 100%;
-        text-align: center;
-        color: white;
-        height: 46px;
-        line-height: 46px;
-        font-size: 30px;
-        letter-spacing: -1.6px;
-        font-weight: bold;
-        font: DMSans_R;
-    }
+
 }
 </style>

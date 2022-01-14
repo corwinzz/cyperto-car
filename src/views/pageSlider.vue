@@ -51,9 +51,9 @@ export default {
 .pageSlid{
     position:absolute;
     right: 50px;
-    top:240px;
+    top:calc(50% - 200px);
     width: 34px;
-    height:480px ;
+    height:400px ;
     .pageslider{
         width: 0px;
         height: 250px;

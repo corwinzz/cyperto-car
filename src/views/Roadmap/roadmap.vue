@@ -4,13 +4,15 @@
         .title ROADMAP
         .txt Inspired by Ready Player One, CyberCar is a composable NFT racing game with various rules and track.
         .line
-    .phaseCurve
-        <svg-icon svgName="p3" :className="`svg_curve`"></svg-icon>
-    template(v-for='itm,idx in phases')
-        Phase(:content='itm' :pos='itm.pos')
+    .phaseCard(ref='phaseCard')
+        .phaseCurve
+            <svg-icon svgName="p3" :className="`svg_curve`"></svg-icon>
+        template(v-for='itm,idx in phases')
+            Phase(:content='itm' :pos='itm.pos')
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Phase from './phase.vue'
 export default {
     name: 'roadmap',
@@ -66,23 +68,44 @@ export default {
     },
     mounted() {
         // this.toggle()
+        this.resize()
     },
     methods: {
         toggle() {
             let dom = this.$refs.roadmap
             dom.classList.toggle('anm_bk_show', true)
+        },
+        resize() {
+            let dom = this.$refs.phaseCard
+            dom.style.left = this.getWndSize.wid < 1440 ? 40 : (this.getWndSize.wid / 2 - 720) + 'px'
+            dom.style.top = this.getWndSize.hei < 900 ? 0 : (this.getWndSize.hei / 2 - 450) + 'px'
+            console.log(dom.style)
         }
+    },
+    computed: {
+        ...mapGetters('animpage', ['getWndSize'])
     },
     watch: {
         $route(to, from) {
             if (to.name === 'roadmap') {
                 // this.toggle()
             }
+        },
+        getWndSize: {
+            handler(val) {
+                this.resize()
+            },
+            deep: true
         }
     }
 }
 </script>
 <style lang="less" scoped>
+.phaseCard{
+    position:absolute;
+    height: 600px;
+    width: 1200px;
+}
 .phaseCurve{
     position:absolute;
     top: 110px;
@@ -94,6 +117,7 @@ export default {
     color: #EA3344;
 }
 .roadmap{
+    position: relative;
     height: 100%;
     width: 100%;
     background: url('/img/b_roadmap1.png') no-repeat center fixed;
@@ -128,6 +152,7 @@ export default {
     }
     .line{
         margin-top:20px ;
+        margin-left: 0px;
         width:50px ;
         height: 0px;
         border-top:1px solid #EA3344;
