@@ -132,7 +132,7 @@ export default Vue.extend({
             t.camera = new THREE.PerspectiveCamera(45, t.wid / t.hei, 0.01, 100000)
             t.camera.position.set(1000, 1000, 1000)
             t.renderer = new THREE.WebGLRenderer({ antialias: true })
-            t.renderer.setClearColor(0x777777, 1.0)
+            t.renderer.setClearColor(0x282828, 1.0)
             t.renderer.setSize(t.wid, t.hei)
             mDom.appendChild(t.renderer.domElement)
 

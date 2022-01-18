@@ -27,7 +27,7 @@ export default Vue.extend({
     },
     data() {
         return {
-
+            pose: new THREE.Vector3(2.5, 2.5, 6.5)
         }
     },
     watch: {
@@ -168,7 +168,7 @@ export default Vue.extend({
             let wid = mDom.offsetWidth
             t.scene = new THREE.Scene()
             t.camera = new THREE.PerspectiveCamera(45, wid / hei, 0.01, 1000)
-            t.camera.position.set(2.5, 2.5, 6.5)
+            t.camera.position.copy(t.pose)
             t.renderer = new THREE.WebGLRenderer({ antialias: true })
             t.renderer.setClearColor(0x2d2d2d, 1.0)
             t.renderer.setSize(wid, hei)
@@ -196,7 +196,6 @@ export default Vue.extend({
             t.composer = new EffectComposer(t.renderer)
             t.composer.addPass(t.renderScene)
             t.composer.addPass(t.bloomPass)
-
             t.renderer.toneMappingExposure = Math.pow(0.1, 4.0)
         },
         onWindowResize() {
@@ -223,6 +222,12 @@ export default Vue.extend({
         },
         animate() {
             let t = this
+            if (t.camera.position.y < 2) {
+                t.camera.position.y = 2
+                if (t.camera.position.length() > t.pose.length()) {
+                    t.camera.position.setLength(t.pose.length())
+                }
+            }
             t.controls.update()
             t.render()
             requestAnimationFrame(t.animate)

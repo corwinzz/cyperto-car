@@ -1,10 +1,15 @@
 <template lang='pug'>
 .cardcar
     .area3D
-        threecard(:modelUrl="carInf.modelUrl" :cid="carInf.cid" :wid="264" :hei="310")
+        threecard(:modelUrl="modelurl" :cid="carInf.cid" :wid="264" :hei="310")
     .cc_row1
         .cc_nam {{carInf.name}}
         .cc_state(:style="ccstate") {{carInf.state}}
+    .cc_color
+        .cc_colors
+            template(v-for='color,idx in mapcolors')
+                .cc_circle(:style="{background:color,left:idx*16+'px'}")
+        .cc_color_count 8 Colors
     .divide
     .cc_row2
         .cc_fee {{carInf.fee}}
@@ -17,7 +22,7 @@
 import threecard from '../../components/Three3D/ThreeCard.vue'
 import { mapActions } from 'vuex'
 import wallet from '../pop/wallet.vue'
-
+import { colors } from '../../plugins/static'
 let tabCols = {
     NORMAL: 'green',
     RARE: 'red'
@@ -26,6 +31,12 @@ let tabCols = {
 export default {
     name: 'Home',
     components: { threecard, wallet },
+    data() {
+        return {
+            colors: colors,
+            mapcolors: ['black', 'white', 'red', 'blue', 'green', 'purple', 'orange', 'pink']
+        }
+    },
     props: {
         // eslint-disable-next-line vue/require-prop-type-constructor
         isWallet: false,
@@ -48,6 +59,11 @@ export default {
         }
     },
     computed: {
+        modelurl() {
+            let url = this.carInf.modelUrl + this.colors[this.carInf.cid % 8] + '.glb'
+            console.log(url)
+            return url
+        },
         ccstate() {
             let col = tabCols[this.carInf.state]
             return {
@@ -105,7 +121,7 @@ export default {
 .cardcar{
     margin: 10px;
     width: 304px;
-    height: 502px;
+    height: 538px;
     background-color: black;
     padding: 20px;
     .area3D{
@@ -136,6 +152,31 @@ export default {
             padding-right: 5px;
             padding-top: 0px;
             // vertical-align: middle;
+        }
+    }
+    .cc_color{
+        height: 36px;
+        padding: 6px 0px;
+        display: flex;
+        justify-content: space-between;
+        .cc_colors{
+            position: relative;
+            .cc_circle{
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                top: 0px;
+                border-radius: 12px;
+                border:3px solid #23262F;
+                box-sizing:border-box;
+            }
+        }
+        .cc_color_count{
+            font-weight: 700;
+            font-family: DMSans_R;
+            font-size: 14px;
+            line-height: 24px;
+            color: white;
         }
     }
     .divide{
